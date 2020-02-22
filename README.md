@@ -42,7 +42,6 @@
 * [Build With](#build-with)
 * [Run Test](#run-test)
 * [Contributing](#contributing)
-    * [Git Flow Plugin](#git-flow-plugin)
 * [License](#license)
 * [Contact](#contact)
 
@@ -58,16 +57,15 @@ To get a local copy up and running follow these simple steps.
 
 ## Contributing
 
-기본적으로 [GitFlow](https://danielkummer.github.io/git-flow-cheatsheet/index.ko_KR.html) 방식으로 프로젝트를 진행한다.
-
-### Git Flow Plugin
-- [Intellij](https://plugins.jetbrains.com/plugin/7315-git-flow-integration)
+기본적으로 [GitFlow](https://danielkummer.github.io/git-flow-cheatsheet/index.ko_KR.html)로 프로젝트 관리한다.
 
 1. Fork the Project
 2. Create your Feature Branch by dev branch (`git checkout -b feature/myFeature dev`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+5. Open a Pull Request (use pull_request template)
+
+If you find a bug or issue, please request it from the appropriate issue template.
 
 ## License
 
