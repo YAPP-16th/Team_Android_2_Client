@@ -1,0 +1,33 @@
+---
+name: issue_template
+about: Create a issue template
+title: ''
+assignees: ''
+
+---
+
+Branch # (branch name)
+
+### 요약
+
+* 개요 1
+* 개요 2
+* 개요 3
+
+### 리서치
+
+* [ ] 리서치 1
+* [ ] 리서치 2
+* [ ] 리서치 3
+
+### 레이아웃
+
+* [ ] 레이아웃 1
+* [ ] 레이아웃 2
+* [ ] 레이아웃 3
+
+### 기능
+
+* [ ] 기능 1
+* [ ] 기능 2
+* [ ] 기능 3
