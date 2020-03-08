@@ -29,9 +29,9 @@
     <br />
     <a href="https://github.com/YAPP-16th/Team_Android_2_Client">View Demo</a>
     ·
-    <a href="https://github.com/YAPP-16th/Team_Android_2_Client/issues">Report Bug</a>
+    <a href="https://github.com/YAPP-16th/Team_Android_2_Client/issues/new?template=bug_report.md">Report Bug</a>
     ·
-    <a href="https://github.com/YAPP-16th/Team_Android_2_Client/issues">Request Feature</a>
+    <a href="https://github.com/YAPP-16th/Team_Android_2_Client/issues/new?template=future_request.md">Request Feature</a>
   </p>
 </p>
 
