@@ -1,5 +1,5 @@
 ---
-name: pull_request
+name: bug_report
 about: Create a bug report
 title: ''
 assignees: ''
