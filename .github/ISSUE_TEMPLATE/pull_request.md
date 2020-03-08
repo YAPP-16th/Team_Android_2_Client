@@ -1,6 +1,6 @@
 ---
 name: pull_request
-about: Create a pull request
+about: 어떤 기능을 만들었나요? 😎
 title: ''
 assignees: ''
 

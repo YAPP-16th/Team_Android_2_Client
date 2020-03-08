@@ -1,8 +1,6 @@
 ---
 name: issue_template
-about: Create a issue template
-title: ''
-assignees: ''
+about: 해야 할 일 ‍💻
 
 ---
 

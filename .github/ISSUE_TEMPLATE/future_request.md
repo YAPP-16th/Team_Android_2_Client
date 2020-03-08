@@ -1,8 +1,6 @@
 ---
 name: future_request
-about: Create a future request
-title: ''
-assignees: ''
+about: 제안할 기능이 있나요? 👏
 
 ---
 

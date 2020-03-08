@@ -1,8 +1,6 @@
 ---
 name: bug_report
-about: Create a bug report
-title: ''
-assignees: ''
+about: 문제가 있나요? 🤔
 
 ---
 
