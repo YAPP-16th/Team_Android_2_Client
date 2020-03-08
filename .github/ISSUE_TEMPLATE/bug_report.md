@@ -1,6 +1,6 @@
 ---
 name: pull_request
-about: Create a request
+about: Create a bug report
 title: ''
 assignees: ''
 
