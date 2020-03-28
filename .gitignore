@@ -1,6 +1,5 @@
-
-# Created by https://www.gitignore.io/api/gradle,kotlin,android,androidstudio
-# Edit at https://www.gitignore.io/?templates=gradle,kotlin,android,androidstudio
+# Created by https://www.gitignore.io/api/java,macos,kotlin,android,androidstudio
+# Edit at https://www.gitignore.io/?templates=java,macos,kotlin,android,androidstudio
 
 ### Android ###
 # Built application files
@@ -94,7 +93,7 @@ output.json
 # with Android Studio 3.5.
 .cxx/
 
-### Kotlin ###
+### Java ###
 # Compiled class file
 
 # Log file
@@ -117,23 +116,46 @@ output.json
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-### Gradle ###
-.gradle
+### Kotlin ###
+# Compiled class file
 
-# Ignore Gradle GUI config
-gradle-app.setting
+# Log file
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+# BlueJ files
 
-# Cache of project
-.gradletasknamecache
+# Mobile Tools for Java (J2ME)
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+# Package Files #
 
-### Gradle Patch ###
-**/build/
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
 ### AndroidStudio ###
 # Covers files to be ignored for android development using Android Studio.
@@ -147,6 +169,7 @@ gradle-app.setting
 # Generated files
 
 # Gradle files
+.gradle
 
 # Signing files
 .signing/
@@ -195,13 +218,20 @@ obj/
 .idea/sqlDataSources.xml
 .idea/dynamic.xml
 .idea/uiDesigner.xml
+.idea
+
+.gradle
+/local.properties
+
+# Build intermediates
+build
+/captures
+.externalNativeBuild
+.cxx
+
 
 # OS-specific files
-.DS_Store
 .DS_Store?
-._*
-.Spotlight-V100
-.Trashes
 ehthumbs.db
 Thumbs.db
 
@@ -238,4 +268,4 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
-# End of https://www.gitignore.io/api/gradle,kotlin,android,androidstudio
+# End of https://www.gitignore.io/api/java,macos,kotlin,android,androidstudio
