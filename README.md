@@ -68,35 +68,35 @@ To get a local copy up and running follow these simple steps.
 ### Presentation Architecture - MVVM
 
 UI 관련 패키지인 Presentation은 MVVM으로 설계했습니다.
-우리는 유지보수 및 추후 확장성을 고려한 아키텍쳐를 선택했습니다. 의존성을 분리하고 모듈화를 위해 뷰모델을 활용한 MVVM 패턴을 적용하고,
-뷰모델에서 뷰를 갱신하기 위해 Observable 형태나 DataBinding을 활용해서 알립니다.
+우리는 유지보수 및 추후 확장성을 고려한 아키텍쳐를 선택했습니다. 의존성을 분리하고 모듈화를 위해 ViewModel을 활용한 MVVM 패턴을 적용했습니다.
 MVVM의 구성요소는 다음과 같습니다.
 
-### 모델
-비즈니스 역할, 데이터 접근을 합니다.
+### Model
+ViewModel이 사용할 데이터를 Usecase로부터 받아와서 맵핑합니다.
 
-### 뷰
+### View
 사용자 인터페이스를 담당합니다.
 
-### 뷰모델
-뷰와 모델 사이의 에이전트 역할을 합니다.
+### ViewModel
+View와 Model을 DataBinding하며 Observable과 Notify를 통해 View를 수정합니다.
 
 ### BusinessLogic Architecture - Clean Architecture
 
 <img src="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg" alt="img" style="zoom:33%;" />
 
-클린 아키텍쳐는 3개의 레이어로 구성됩니다. 프레젠테이션, 도메인, 데이터 레이어인데 이들 레이어는 안으로만 의존성을 향합니다.
-프레젠테이션 레이어는 이 앱에서 뷰모델에 해당됩니다. UseCase를 사용해 데이터에 따라 화면을 조작하기 때문에 Usecase가 있는 도메인 레이어에 의존합니다.
-도메인 레이어는 비즈니스 로직을 처리합니다. 도메인 레이어는 Usecase와 Entity를 가지고 있습니다.
-데이터 레이어는 도메인에 필요한 모든 데이터를 조작하기 위한 레이어입니다. Repository와 DataSource를 가지고 있습니다.
-도메인 레이어는 어플리케이션의 비즈니스 로직을 담고 있으므로 다른 레이어와 의존성을 가지고 있지 않습니다.
+클린 아키텍쳐는 3개의 레이어로 구성됩니다. Presentation, Domain, Data 레이어인데 이들 레이어는 안으로만 의존성을 향합니다.
+Presentation 레이어는 사용자 인터페이스를 처리합니다. MVVM 구조를 가지며 Domain 레이어에 의존적입니다.
+Domain 레이어는 비즈니스 로직을 처리합니다. 도메인 레이어는 Usecase와 Entity를 가지고 있습니다. Usecase는 사용자가 화면을 조작하는 기능단위입니다.
+다른 레이어들에 대해 의존성이 없습니다.
+Data 레이어는 도메인에 필요한 모든 데이터를 조작하기 위한 레이어입니다. Repository와 DataSource를 가지고 있습니다.
 
 ### DI - Koin
 
 ![image-20200401152705784](/Users/macbook/Library/Application Support/typora-user-images/image-20200401152705784.png)
 
-의존성 주입 라이브러리로 Koin을 사용했습니다. 코틀린을 위한 DI 라이브러리로 순수 코틀린만으로 작성되었으며 어노테이션 프로세싱 및 리플렉션을 사용하지 않기 때문에 상대적으로 더 가볍습니다.
-코틀린을 사용하는 이 앱에서는 Koin이 적절합니다.
+의존성 주입 라이브러리로 Koin을 사용했습니다. 코틀린을 위한 DI 라이브러리로 순수 코틀린만으로 작성되었으며
+어노테이션 프로세싱 및 리플렉션을 사용하지 않기 때문에 Dagger에 비해 상대적으로 더 가볍습니다.
+프로젝트의 크기가 크지 않고 라이브러리를 빠르게 적용하기 위해서 우리는 Koin을 선택했습니다.
 
 <!-- CONTRIBUTING -->
 ## Contributing
