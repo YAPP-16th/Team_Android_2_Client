@@ -43,8 +43,7 @@
 ## Table of Contents
 
 * [About The Project](#about-the-project)
-    * [Build With](#build-with)
-* [App Architecture](#app-architecture)
+    * [Build With](#build-with) 
 * [Contributing](#contributing)
     * [Git Flow Plugin](#git-flow-plugin)
 * [License](#license)
@@ -55,49 +54,6 @@
 To get a local copy up and running follow these simple steps.
 
 ### Build With
-
-<!-- App Architecture -->
-## App Architecuture
----
-이 앱은 Clean Architecture 패턴로 총 3개의 레이어로 구성되있습니다.
-
-- **Domain**
-- **Data**
-- **Presentation**
-
-### Presentation Architecture - MVVM
-
-UI 관련 패키지인 Presentation은 MVVM으로 설계했습니다. 일반적인 UI 개발에서는 모든 논리 코드를 View에 작성합니다.
-하지만 이 방법은 뷰 클래스의 크기를 늘리고 UI와 데이터 그리고 비즈니스 사이의 매우 강한 의존성을 형성합니다.
-따라서 의존성 분리가 필요한데 뷰모델이 이러한 역할을 해줍니다.
-MVVM의 구성요소는 다음과 같습니다.
-
-### 모델
-비즈니스 역할, 데이터 접근을 합니다.
-
-### 뷰
-사용자 인터페이스를 담당합니다.
-
-### 뷰모델
-뷰와 모델 사이의 에이전트 역할을 합니다.
-뷰모델에서 뷰를 갱신할 때는 Observable 형태로 알리거나, DataBinding을 활용해서 알려야합니다.
-
-### BusinessLogic Architecture - Clean Architecture
-
-<img src="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg" alt="img" style="zoom:50%;" />
-
-클린 아키텍쳐는 3개의 레이어로 구성됩니다. 프레젠테이션, 도메인, 데이터 레이어인데 이들 레이어는 안으로만 의존성을 향합니다.
-프레젠테이션 레이어는 이 앱에서 뷰모델에 해당됩니다. UseCase를 사용해 데이터에 따라 화면을 조작하기 때문에 Usecase가 있는 도메인 레이어에 의존합니다.
-도메인 레이어는 비즈니스 로직을 처리합니다. 도메인 레이어는 Usecase와 Entity를 가지고 있습니다.
-데이터 레이어는 도메인에 필요한 모든 데이터를 조작하기 위한 레이어입니다. Repository와 DataSource를 가지고 있습니다.
-도메인 레이어는 어플리케이션의 비즈니스 로직을 담고 있으므로 다른 레이어와 의존성을 가지고 있지 않습니다.
-
-### DI - Koin
-
-![image-20200401152705784](/Users/macbook/Library/Application Support/typora-user-images/image-20200401152705784.png)
-
-의존성 주입 라이브러리로 Koin을 사용했습니다. 코틀린을 위한 DI 라이브러리로 순수 코틀린만으로 작성되었으며 어노테이션 프로세싱 및 리플렉션을 사용하지 않기 때문에 상대적으로 더 가볍습니다.
-코틀린을 사용하는 이 앱에서는 Koin이 적절합니다.
 
 <!-- CONTRIBUTING -->
 ## Contributing
