@@ -84,7 +84,7 @@ View와 Model을 DataBinding하며 Observable과 Notify를 통해 View를 수정
 
 <img src="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg" alt="img" style="zoom:33%;" />
 
-클린 아키텍쳐는 3개의 레이어로 구성됩니다. Presentation, Domain, Data 레이어인데 이들 레이어는 안으로만 의존성을 향합니다.
+Clean Architecture는 3개의 레이어로 구성됩니다. Presentation, Domain, Data 레이어인데 이들 레이어는 안으로만 의존성을 향합니다.
 Presentation 레이어는 사용자 인터페이스를 처리합니다. MVVM 구조를 가지며 Domain 레이어에 의존적입니다.
 Domain 레이어는 비즈니스 로직을 처리합니다. 도메인 레이어는 Usecase와 Entity를 가지고 있습니다. Usecase는 사용자가 화면을 조작하는 기능단위입니다.
 다른 레이어들에 대해 의존성이 없습니다.
@@ -94,9 +94,9 @@ Data 레이어는 도메인에 필요한 모든 데이터를 조작하기 위한
 
 ![image-20200401152705784](/Users/macbook/Library/Application Support/typora-user-images/image-20200401152705784.png)
 
-의존성 주입 라이브러리로 Koin을 사용했습니다. 코틀린을 위한 DI 라이브러리로 순수 코틀린만으로 작성되었으며
+DI 프레임워크로 Koin을 사용했습니다. 코틀린을 위한 DI 라이브러리로 순수 코틀린만으로 작성되었으며
 어노테이션 프로세싱 및 리플렉션을 사용하지 않기 때문에 Dagger에 비해 상대적으로 더 가볍습니다.
-프로젝트의 크기가 크지 않고 라이브러리를 빠르게 적용하기 위해서 우리는 Koin을 선택했습니다.
+우리의 프로젝트의 크기가 크지 않기 때문에 Koin을 선택했습니다.
 
 <!-- CONTRIBUTING -->
 ## Contributing
