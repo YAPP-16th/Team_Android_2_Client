@@ -49,5 +49,4 @@ class MainActivity : AppCompatActivity() {
     private fun getComments() {
         viewModel.getComments()
     }
-
 }

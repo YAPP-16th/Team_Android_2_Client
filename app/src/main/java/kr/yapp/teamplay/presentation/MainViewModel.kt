@@ -21,7 +21,7 @@ class MainViewModel(
 ) : ViewModel() {
 
     companion object {
-        private const val TAG: String = "MAinViewModel"
+        private const val TAG: String = "MainViewModel"
     }
 
     private val _comments = MutableLiveData<List<Comment>>()
