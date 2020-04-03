@@ -97,7 +97,7 @@ Data 레이어는 Domain 레이어에 의존적입니다.
 
 ### DI - Koin
 
-![image-20200401152705784](/Users/macbook/Library/Application Support/typora-user-images/image-20200401152705784.png)
+<img src="https://insert-koin.io/assets/images/koin_2.0.jpg" alt="img" style="zoom:33%;" />
 
 DI 프레임워크로 Koin을 사용했습니다. 코틀린을 위한 DI 라이브러리로 순수 코틀린만으로 작성되었으며
 어노테이션 프로세싱 및 리플렉션을 사용하지 않기 때문에 Dagger에 비해 상대적으로 더 가볍습니다.
