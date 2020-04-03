@@ -78,17 +78,22 @@ ViewModel이 사용할 데이터를 Usecase로부터 받아와서 맵핑합니�
 사용자 인터페이스를 담당합니다.
 
 ### ViewModel
-View와 Model을 DataBinding하며 Observable과 Notify를 통해 View를 수정합니다.
+View와 Model을 DataBinding하며 Observable과 Notify를 통해 View에게 데이터 변경을 통지합니다.
 
 ### BusinessLogic Architecture - Clean Architecture
 
 <img src="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg" alt="img" style="zoom:33%;" />
 
-Clean Architecture는 3개의 레이어로 구성됩니다. Presentation, Domain, Data 레이어인데 이들 레이어는 안으로만 의존성을 향합니다.
-Presentation 레이어는 사용자 인터페이스를 처리합니다. MVVM 구조를 가지며 Domain 레이어에 의존적입니다.
-Domain 레이어는 비즈니스 로직을 처리합니다. 도메인 레이어는 Usecase와 Entity를 가지고 있습니다. Usecase는 사용자가 화면을 조작하는 기능단위입니다.
-다른 레이어들에 대해 의존성이 없습니다.
+<img src="https://user-images.githubusercontent.com/37705123/78164819-57c19c00-7485-11ea-94fb-ef8e904abb0d.png" alt="img" style="zoom:33%;" />
+
+Clean Architecture는 Presentation, Domain, Data 레이어로 구성됩니다. 이들 레이어는 위의 원형 그림에서 보다시피, 안으로만 의존성을 향합니다.
+위 그림에 의하면, Presentation 레이어는 Activity/ Frgment/ UI Component, ViewModel을 가지고 있습니다.
+화면을 보여주거나 액션을 받습니다. 플랫폼과 Domain 레이어에 의존적입니다.
+Domain 레이어는 비즈니스 로직을 처리합니다. Domain 레이어는 Usecase와 Entity를 가지고 있습니다.
+Usecase는 사용자가 화면을 조작하는 기능단위입니다. Domain 레이어는 원에서 가장 안쪽에 있으므로 다른 레이어에 대해 의존성이 없습니다.
 Data 레이어는 도메인에 필요한 모든 데이터를 조작하기 위한 레이어입니다. Repository와 DataSource를 가지고 있습니다.
+DataSource는 다시 내부 저장소에서 가지고 오는 LocalDataSource와 외부 API에서 가지고 오는 RemoteDataSource로 나뉩니다.
+Data 레이어는 Domain 레이어에 의존적입니다.
 
 ### DI - Koin
 
