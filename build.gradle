@@ -15,7 +15,7 @@ buildscript {
         espressoVersion = '3.1.1'
         mockitoVersion = '2.27.0'
         mockitoKotlinVersion = '2.2.0'
-        navigationVersion = '1.0.0-rc02'
+        navigationVersion = '2.2.1'
     }
 
     repositories {
@@ -28,7 +28,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // navigation component - safe args
-        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
 
 
         // NOTE: Do not place your application dependencies here; they belong
