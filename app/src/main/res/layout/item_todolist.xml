@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="todo"
+            type="kr.yapp.teamplay.todolist.data.Todo" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/todo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="title"
+            android:text="@{todo.title}"/>
+        <TextView
+            android:id="@+id/todo_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="content"
+            android:text="@{todo.content}"/>
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.yapp.teamplay.todolist.presentation.TodoViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/todo_edittext_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.title}"
+            android:inputType="text"
+            android:autofillHints="title"
+            android:hint="title" />
+        <EditText
+            android:id="@+id/todo_edittext_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.content}"
+            android:inputType="text"
+            android:autofillHints="title"
+            android:hint="content" />
+        <Button
+            android:id="@+id/todo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="click"
+            android:onClick="@{() -> viewModel.insert()}"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            bind:listitem="@layout/item_todolist"
+            bind:item="@{viewModel.list}"/>
+    </LinearLayout>
+</layout>
+
