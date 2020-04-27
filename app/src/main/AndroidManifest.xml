@@ -35,6 +35,9 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
+
+        </activity>
+        <activity android:name=".teammain.presentation.TeamMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
