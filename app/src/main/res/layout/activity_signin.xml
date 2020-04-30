@@ -3,6 +3,16 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="signinViewModel"
+            type="kr.yapp.teamplay.presentation.signin.SigninViewModel" />
+
+        <variable
+            name="signupViewModel"
+            type="kr.yapp.teamplay.presentation.signin.SignupViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,24 +23,103 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:tint="@color/veryLightGrey"
-            app:layout_constraintVertical_bias="0.2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2"
             app:srcCompat="@drawable/logotype" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="320dp"
+            android:layout_marginHorizontal="55dp"
+            android:layout_marginTop="260dp"
+            android:layout_marginBottom="140dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"></FrameLayout>
 
-        </FrameLayout>
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="55dp"
+            android:layout_marginBottom="90dp"
+            android:background="@drawable/onboarding_roundbutton"
+            android:backgroundTint="#4D828282"
+            android:onClick="@{signinViewModel.clickSigninEmailButton}"
+            android:text="다음"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/btn_signin_finish"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="55dp"
+            android:layout_marginBottom="90dp"
+            android:background="@drawable/onboarding_roundbutton"
+            android:backgroundTint="#4D828282"
+            android:text="@string/signin_btn"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_signup_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="55dp"
+            android:background="@drawable/onboarding_roundbutton"
+            android:backgroundTint="#4D828282"
+            android:text="signup_email_btn"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+
+        <TextView
+            android:id="@+id/text_signup_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="55dp"
+            android:background="@drawable/onboarding_roundbutton"
+            android:backgroundTint="#4D828282"
+            android:text="@string/signup_password"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+
+        <TextView
+            android:id="@+id/btn_signup_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="55dp"
+            android:background="@drawable/onboarding_roundbutton"
+            android:backgroundTint="#4D828282"
+            android:text="@string/signin_btn"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

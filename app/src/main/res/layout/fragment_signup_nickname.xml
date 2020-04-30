@@ -3,6 +3,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.yapp.teamplay.presentation.signin.SigninViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,6 +27,10 @@
             android:id="@+id/input_signup_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:foregroundTint="#FFFFFF"
+            android:inputType="textEmailAddress"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,21 +42,6 @@
                 android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/btn_signup_nickname"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/onboarding_roundbutton"
-            android:backgroundTint="@color/brownGrey"
-            android:text="@string/signin_btn"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_signup_nickname"
-            app:layout_constraintVertical_bias="0.7" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
