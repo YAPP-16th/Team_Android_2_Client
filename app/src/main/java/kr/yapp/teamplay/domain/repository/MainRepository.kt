@@ -1,4 +1,4 @@
-package kr.yapp.teamplay.data
+package kr.yapp.teamplay.domain.repository
 
 import io.reactivex.Single
 import kr.yapp.teamplay.data.Comment
