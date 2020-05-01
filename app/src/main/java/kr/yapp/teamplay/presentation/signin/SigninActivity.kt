@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_signin.*
 import kotlinx.android.synthetic.main.fragment_signin_email.*
 import kotlinx.android.synthetic.main.fragment_signin_password.*
+import kotlinx.android.synthetic.main.fragment_signup_email.*
+import kotlinx.android.synthetic.main.fragment_signup_nickname.*
+import kotlinx.android.synthetic.main.fragment_signup_password.*
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivitySigninBinding
 
@@ -70,7 +73,38 @@ class SigninActivity : AppCompatActivity(){
             signinViewModel.onSignin(input_password.editText.toString())
         })
 
+        /*
+        success Signin
+         */
         signinViewModel.doSigninFinishCallback.observe(this, Observer {
+            goToMain()
+        })
+
+        signupViewModel.clickSignupEmailCallback.observe(this, Observer {
+            signupViewModel.onSignupEmail(input_signup_email.editText.toString())
+        })
+
+        signupViewModel.doSignupEmailCallback.observe(this, Observer {
+            goToSignupPassword()
+            btn_signup_email.visibility = View.INVISIBLE
+            btn_signup_password.visibility = View.VISIBLE
+        })
+
+        signupViewModel.clickSignupPasswordCallback.observe(this, Observer {
+            signupViewModel.onSignupPassword(input_signup_password.editText.toString())
+        })
+
+        signupViewModel.doSignupPasswordCallback.observe(this, Observer {
+            goToSignupNickname()
+            btn_signup_password.visibility = View.INVISIBLE
+            btn_signup_nickname.visibility = View.VISIBLE
+        })
+
+        signupViewModel.clickSignupNicknameCallback.observe(this, Observer {
+            signupViewModel.onSignupNickname(input_signup_nickname.editText.toString())
+        })
+
+        signupViewModel.doSignupNicknameCallback.observe(this, Observer {
             goToMain()
         })
     }
