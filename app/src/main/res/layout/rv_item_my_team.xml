@@ -46,8 +46,6 @@
                     android:text="@{myTeam.category}"
                     android:textColor="@color/colorWhite"
                     android:textSize="12dp"
-                    android:fontFamily="@font/sf_pro_regular"
-                    android:includeFontPadding="false"
                     tools:text="basketball"/>
 
             </androidx.cardview.widget.CardView>
@@ -61,7 +59,6 @@
                 android:textColor="@color/colorWarmGrey"
                 android:textSize="26dp"
                 android:fontFamily="@font/sf_pro_bold"
-                android:includeFontPadding="false"
                 app:layout_constraintTop_toBottomOf="@id/rvMyTeamCategory"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="상암동 농구클럽"/>
@@ -73,8 +70,6 @@
                 android:text="@{myTeam.teamLocation}"
                 android:textSize="16dp"
                 android:textColor="@color/colorWarmGrey"
-                android:fontFamily="@font/sf_pro_regular"
-                android:includeFontPadding="false"
                 app:layout_constraintTop_toBottomOf="@id/rvMyTeamName"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="서울시 마포구 상암동 소재"/>
@@ -85,8 +80,6 @@
                 android:text="@string/myTeamSinceExample"
                 android:textSize="12dp"
                 android:textColor="@color/colorWarmGrey"
-                android:fontFamily="@font/sf_pro_regular"
-                android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="2017.02.11 창설  |  현재회원수 52명"/>

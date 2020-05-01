@@ -11,7 +11,8 @@
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
 
         <ScrollView
             android:layout_width="0dp"
@@ -46,7 +47,6 @@
                     android:layout_marginTop="32dp"
                     android:text="@string/myTeamUserNameHint"
                     android:textSize="16dp"
-                    android:fontFamily="@font/sf_pro_regular"
                     android:textColor="@color/colorWireFrameFont"
                     app:layout_constraintTop_toBottomOf="@id/myTeamLogo"
                     app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,6 @@
                     android:text="@string/myTeamUserNameExample"
                     android:textSize="26dp"
                     android:textColor="@color/colorWireFrameFont"
-                    android:textStyle="bold"
                     android:fontFamily="@font/sf_pro_bold"
                     app:layout_constraintTop_toBottomOf="@id/myTeamHiText"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +118,6 @@
                             android:text="@string/myTeamSelectTeamDescription"
                             android:textSize="16dp"
                             android:textColor="@color/colorWarmGrey"
-                            android:fontFamily="@font/sf_pro_regular"
                             app:layout_constraintTop_toBottomOf="@id/rvMyTeamName"
                             app:layout_constraintStart_toStartOf="parent"
                             tools:text="당신을 기다리고 있는 팀들을 찾아보세요"/>
@@ -130,7 +128,6 @@
                             android:text="@string/myTeamSelectTeamCount"
                             android:textSize="12dp"
                             android:textColor="@color/colorWarmGrey"
-                            android:fontFamily="@font/sf_pro_regular"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             tools:text="현재 258개의 팀이 팀플레이 중입니다"/>
