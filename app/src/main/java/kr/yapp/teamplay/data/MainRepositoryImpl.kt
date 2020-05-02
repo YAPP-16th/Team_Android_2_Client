@@ -1,10 +1,7 @@
-package kr.yapp.teamplay.domain
+package kr.yapp.teamplay.data
 
 import io.reactivex.Single
-import kr.yapp.teamplay.data.Comment
-import kr.yapp.teamplay.data.CommentService
-import kr.yapp.teamplay.data.MainRepository
-import kr.yapp.teamplay.data.RetrofitManager
+import kr.yapp.teamplay.domain.repository.MainRepository
 
 /**
  * Created by Lee Oh Hyoung on 2020/03/29.

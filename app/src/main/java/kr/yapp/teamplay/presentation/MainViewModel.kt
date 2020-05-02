@@ -9,8 +9,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import kr.yapp.teamplay.data.Comment
-import kr.yapp.teamplay.data.MainRepository
-import kr.yapp.teamplay.domain.MainRepositoryImpl
+import kr.yapp.teamplay.domain.repository.MainRepository
+import kr.yapp.teamplay.data.MainRepositoryImpl
 
 /**
  * Created by Lee Oh Hyoung on 2020/03/28.
