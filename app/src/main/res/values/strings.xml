@@ -22,4 +22,13 @@
     <string name="signup_password">패스워드와 닉네임만 입력하면 팀플레이 시작!</string>
     <string name="signup_nickname">이제 멋진 닉네임만 정하면 끝이에요!</string>
     <string name="next">다음</string>
+
+    <string name="myTeamUserNameHint">안녕하세요,</string>
+    <string name="myTeamUserNameExample">상암동 데릭로즈님</string>
+    <string name="myTeamSinceExample">2017.02.11 창설  |  현재회원수 52명</string>
+
+    <string name="myTeamSelectTeamTitle">팀 찾기</string>
+    <string name="myTeamSelectTeamDescription">당신을 기다리고 있는 팀들을 찾아보세요</string>
+    <string name="myTeamSelectTeamCount">현재 258개의 팀이 팀플레이 중입니다</string>
+
 </resources>
