@@ -22,7 +22,7 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/veryLightGrey"
+            android:tint="@color/colorLightGrey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,9 +49,9 @@
             android:layout_marginHorizontal="55dp"
             android:layout_marginBottom="90dp"
             android:background="@drawable/onboarding_roundbutton"
-            android:backgroundTint="#4D828282"
-            android:onClick="@{signinViewModel.clickSigninEmailButton}"
-            android:text="다음"
+            android:backgroundTint="@color/colorTransparentGrey"
+            android:onClick="@{() -> signinViewModel.clickSignInEmailButton()}"
+            android:text="@string/next"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:visibility="visible"
@@ -66,7 +66,7 @@
             android:layout_marginHorizontal="55dp"
             android:layout_marginBottom="90dp"
             android:background="@drawable/onboarding_roundbutton"
-            android:backgroundTint="#4D828282"
+            android:backgroundTint="@color/colorTransparentGrey"
             android:text="@string/signin_btn"
             android:textAlignment="center"
             android:textColor="@android:color/white"
@@ -80,45 +80,48 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="55dp"
+            android:layout_marginBottom="90dp"
             android:background="@drawable/onboarding_roundbutton"
-            android:backgroundTint="#4D828282"
+            android:backgroundTint="@color/colorTransparentGrey"
             android:text="signup_email_btn"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/btn_signup_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="55dp"
+            android:layout_marginBottom="90dp"
             android:background="@drawable/onboarding_roundbutton"
-            android:backgroundTint="#4D828282"
+            android:backgroundTint="@color/colorTransparentGrey"
             android:text="@string/signup_password"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/btn_signup_nickname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="55dp"
+            android:layout_marginBottom="90dp"
             android:background="@drawable/onboarding_roundbutton"
-            android:backgroundTint="#4D828282"
+            android:backgroundTint="@color/colorTransparentGrey"
             android:text="@string/signin_btn"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_container" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

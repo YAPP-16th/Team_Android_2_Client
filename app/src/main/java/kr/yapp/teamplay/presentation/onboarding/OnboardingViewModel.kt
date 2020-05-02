@@ -5,31 +5,19 @@ import androidx.lifecycle.ViewModel
 import kr.yapp.teamplay.presentation.util.SingleLiveEvent
 
 class OnboardingViewModel : ViewModel(){
-    val clickKakaoLoginCallback : SingleLiveEvent<Void> = SingleLiveEvent()
-    val clickNaverLoginCallback : SingleLiveEvent<Void> = SingleLiveEvent()
-    val clickGoogleLoginCallback : SingleLiveEvent<Void> = SingleLiveEvent()
+    val kakaoLoginClick : SingleLiveEvent<Void> = SingleLiveEvent()
+    val naverLoginClick : SingleLiveEvent<Void> = SingleLiveEvent()
+    val googleLoginClick : SingleLiveEvent<Void> = SingleLiveEvent()
 
-    fun clickKaKaoLoginButton(view : View){
-        clickKakaoLoginCallback.call()
+    fun clickKaKaoLoginButton(){
+        kakaoLoginClick.call()
     }
 
-    fun clickNaverLoginButton(view : View){
-        clickNaverLoginCallback.call()
+    fun clickNaverLoginButton(){
+        naverLoginClick.call()
     }
 
-    fun clickGoogleLoginButton(view : View){
-        clickGoogleLoginCallback.call()
-    }
-
-    fun signinKaKao(){
-
-    }
-
-    fun signinNaver(){
-
-    }
-
-    fun signinGoogle(){
-
+    fun clickGoogleLoginButton(){
+        googleLoginClick.call()
     }
 }

@@ -1,7 +1,6 @@
 package kr.yapp.teamplay.presentation.signin
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -44,14 +43,14 @@ class SigninActivity : AppCompatActivity(){
     }
 
     fun setLiveDataObserver(){
-        signinViewModel.clickSigninEmailCallback.observe(this, Observer {
+        signinViewModel.signInEmailClick.observe(this, Observer {
             signinViewModel.checkAlreadyUser(input_email.editText.toString())
         })
 
         /*
         already registered input email
          */
-        signinViewModel.doSigninCallback.observe(this, Observer {
+        signinViewModel.signInStart.observe(this, Observer {
             goToSigninPassword()
             btn_next.visibility = View.INVISIBLE
             btn_signin_finish.visibility = View.VISIBLE
@@ -60,7 +59,7 @@ class SigninActivity : AppCompatActivity(){
         /*
         not registered input email
          */
-        signinViewModel.doSignupCallback.observe(this, Observer {
+        signinViewModel.signUpStart.observe(this, Observer {
             goToSignupEmail()
             btn_next.visibility = View.INVISIBLE
             btn_signup_email.visibility = View.VISIBLE
@@ -69,42 +68,42 @@ class SigninActivity : AppCompatActivity(){
         /*
         submit password for signin in signinpassword Page
          */
-        signinViewModel.clickSigninPasswordCallback.observe(this, Observer {
-            signinViewModel.onSignin(input_password.editText.toString())
+        signinViewModel.signInPasswordClick.observe(this, Observer {
+            signinViewModel.inputSignInPassword(input_password.editText.toString())
         })
 
         /*
         success Signin
          */
-        signinViewModel.doSigninFinishCallback.observe(this, Observer {
+        signinViewModel.signInPasswordFinish.observe(this, Observer {
             goToMain()
         })
 
-        signupViewModel.clickSignupEmailCallback.observe(this, Observer {
-            signupViewModel.onSignupEmail(input_signup_email.editText.toString())
+        signupViewModel.signUpEmailClick.observe(this, Observer {
+            signupViewModel.inputSignUpEmail(input_signup_email.editText.toString())
         })
 
-        signupViewModel.doSignupEmailCallback.observe(this, Observer {
+        signupViewModel.signUpEmailFinish.observe(this, Observer {
             goToSignupPassword()
             btn_signup_email.visibility = View.INVISIBLE
             btn_signup_password.visibility = View.VISIBLE
         })
 
-        signupViewModel.clickSignupPasswordCallback.observe(this, Observer {
-            signupViewModel.onSignupPassword(input_signup_password.editText.toString())
+        signupViewModel.signUpPasswordClick.observe(this, Observer {
+            signupViewModel.inputSignUpPassword(input_signup_password.editText.toString())
         })
 
-        signupViewModel.doSignupPasswordCallback.observe(this, Observer {
+        signupViewModel.signUpPasswordFinish.observe(this, Observer {
             goToSignupNickname()
             btn_signup_password.visibility = View.INVISIBLE
             btn_signup_nickname.visibility = View.VISIBLE
         })
 
-        signupViewModel.clickSignupNicknameCallback.observe(this, Observer {
-            signupViewModel.onSignupNickname(input_signup_nickname.editText.toString())
+        signupViewModel.signUpNicknameClick.observe(this, Observer {
+            signupViewModel.inputSignUpNickname(input_signup_nickname.editText.toString())
         })
 
-        signupViewModel.doSignupNicknameCallback.observe(this, Observer {
+        signupViewModel.signUpNicknameFinsih.observe(this, Observer {
             goToMain()
         })
     }

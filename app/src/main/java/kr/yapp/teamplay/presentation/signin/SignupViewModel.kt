@@ -5,37 +5,37 @@ import androidx.lifecycle.ViewModel
 import kr.yapp.teamplay.presentation.util.SingleLiveEvent
 
 class SignupViewModel : ViewModel() {
-    val clickSignupEmailCallback : SingleLiveEvent<Void> = SingleLiveEvent()
-    val clickSignupPasswordCallback : SingleLiveEvent<Void> = SingleLiveEvent()
-    val clickSignupNicknameCallback : SingleLiveEvent<Void> = SingleLiveEvent()
-    val doSignupEmailCallback : SingleLiveEvent<Void> = SingleLiveEvent()
-    val doSignupPasswordCallback : SingleLiveEvent<Void> = SingleLiveEvent()
-    val doSignupNicknameCallback : SingleLiveEvent<Void> = SingleLiveEvent()
+    val signUpEmailClick : SingleLiveEvent<Void> = SingleLiveEvent()
+    val signUpPasswordClick : SingleLiveEvent<Void> = SingleLiveEvent()
+    val signUpNicknameClick : SingleLiveEvent<Void> = SingleLiveEvent()
+    val signUpEmailFinish : SingleLiveEvent<Void> = SingleLiveEvent()
+    val signUpPasswordFinish : SingleLiveEvent<Void> = SingleLiveEvent()
+    val signUpNicknameFinsih : SingleLiveEvent<Void> = SingleLiveEvent()
 
-    fun clickSignupEmailButton(view : View) {
-        clickSignupEmailCallback.call()
+    fun clickSignUpEmailButton() {
+        signUpEmailClick.call()
     }
 
-    fun clickSignupPasswordButton(view : View) {
-        clickSignupPasswordCallback.call()
+    fun clickSignUpPasswordButton() {
+        signUpPasswordClick.call()
     }
 
-    fun clickSignupNicknameButton(view : View) {
-        clickSignupNicknameCallback.call()
+    fun clickSignUpNicknameButton() {
+        signUpNicknameClick.call()
     }
 
-    fun onSignupEmail(email : String) {
+    fun inputSignUpEmail(email : String) {
         //유효한 이메일인지 체크
-        doSignupEmailCallback.call()
+        signUpEmailFinish.call()
     }
 
-    fun onSignupPassword(password : String) {
+    fun inputSignUpPassword(password : String) {
         //유효한 패스워드인지 체크
-        doSignupPasswordCallback.call()
+        signUpPasswordFinish.call()
     }
 
-    fun onSignupNickname(nickname : String) {
+    fun inputSignUpNickname(nickname : String) {
         //유효한 닉네임인지 체크
-        doSignupNicknameCallback.call()
+        signUpNicknameFinsih.call()
     }
 }
