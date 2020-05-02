@@ -25,4 +25,13 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="EditTextStyle" parent="Widget.Design.TextInputLayout">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="android:textCursorDrawable">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="android:textColorHighlight">@android:color/white</item>
+    </style>
+
 </resources>
