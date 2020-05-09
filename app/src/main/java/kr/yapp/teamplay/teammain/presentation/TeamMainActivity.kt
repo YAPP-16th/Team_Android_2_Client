@@ -6,6 +6,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityTeamMainBinding
 
@@ -19,8 +23,23 @@ class TeamMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setDataBinding()
         transStatusWhiteTextBar()
+        setDataBinding()
+        setRecyclerView()
+    }
+
+    private fun setRecyclerView() {
+        binding.teamMainRecyclerView.run {
+            layoutManager = LinearLayoutManager(this@TeamMainActivity, RecyclerView.VERTICAL, false)
+            itemAnimator = DefaultItemAnimator()
+            addItemDecoration(
+                DividerItemDecoration(
+                    this@TeamMainActivity,
+                    LinearLayoutManager.VERTICAL
+                )
+            )
+            adapter = TeamMainAdapter(mutableListOf())
+        }
     }
 
     override fun onResume() {
@@ -44,6 +63,4 @@ class TeamMainActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
     }
-
-
 }

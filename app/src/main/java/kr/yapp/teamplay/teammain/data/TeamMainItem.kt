@@ -16,5 +16,7 @@ data class TeamMainItem(
     @SerializedName("name") val name: String,
     @SerializedName("address") val address: String,
     @SerializedName("create_date") val createDate: String,
-    @SerializedName("member_count") val memberCount: String
+    @SerializedName("member_count") val memberCount: String,
+    @SerializedName("feed_count") val feedCount: String,
+    @SerializedName("feed_items") val feedItems: List<TeamMainFeedItem>
 )
