@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -99,12 +100,12 @@ class SigninActivity : AppCompatActivity() {
 
     private fun setErrorSigninEmail() {
         signin_email_errorMessage.text = resources.getText(R.string.signin_error_email)
-        input_signin_email.background.setTint(resources.getColor(R.color.colorRed))
+        input_signin_email.background.setTint(ContextCompat.getColor(this, R.color.colorRed))
     }
 
     private fun setErrorSigninPassword() {
         signin_password_errorMessage.text = resources.getText(R.string.signin_error_password)
-        et_signin_password.background.setTint(resources.getColor(R.color.colorRed))
+        et_signin_password.background.setTint(ContextCompat.getColor(this, R.color.colorRed))
     }
 
     private fun transStatusWhiteTextBar() {

@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import kr.yapp.teamplay.data.auth.AuthRepositoryImpl
 import kr.yapp.teamplay.domain.usecase.EmailCheckUsecase
@@ -19,6 +21,8 @@ class SigninViewModel(
     private val emailCheckUsecase : EmailCheckUsecase =
         EmailCheckUsecase(AuthRepositoryImpl())
 ) : ViewModel(){
+
+    private val compositeDisposable = CompositeDisposable()
 
     val signInEmailClick : SingleLiveEvent<Void> = SingleLiveEvent()
     val signInPasswordClick : SingleLiveEvent<Void> = SingleLiveEvent()
@@ -56,8 +60,9 @@ class SigninViewModel(
                         signUpStart.call()
                     }
                 }, {
-                    Log.d("MyTag", it.localizedMessage)
+                    Log.d("MyTag", it.localizedMessage!!)
                 })
+                .addTo(compositeDisposable)
         } else {
             signInEmailError.call()
         }
@@ -76,8 +81,9 @@ class SigninViewModel(
                     signInSuccess.call()
                 }, {
                     val body: ResponseBody? = (it as HttpException).response()?.errorBody()
-                    Log.d("MyTag", it.localizedMessage)
+                    Log.d("MyTag", it.localizedMessage!!)
                 })
+                .addTo(compositeDisposable)
         } else {
             signInPasswordError.call()
         }
