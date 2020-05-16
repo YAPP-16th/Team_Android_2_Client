@@ -46,6 +46,7 @@
     <string name="item_result_type_label_result">Result</string>
     <string name="item_result_type_match_result">경기결과</string>
     <string name="my_html">%s 과의 경기에서 \n 승리하셨습니다.</string>
+    <string name="team_main_feed_count_format">%s posts</string>
 
 
 </resources>

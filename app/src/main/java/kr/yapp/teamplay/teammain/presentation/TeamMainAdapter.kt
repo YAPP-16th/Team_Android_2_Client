@@ -20,20 +20,20 @@ class TeamMainAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
             0 -> {
-                ResultTypeViewHolder(
+                NoticeTypeViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
-                        R.layout.rv_item_team_main_result_type,
+                        R.layout.rv_item_team_main_notice_type,
                         parent,
                         false
                     )
                 )
             }
             1 -> {
-                NoticeTypeViewHolder(
+                ResultTypeViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
-                        R.layout.rv_item_team_main_notice_type,
+                        R.layout.rv_item_team_main_result_type,
                         parent,
                         false
                     )
@@ -48,8 +48,8 @@ class TeamMainAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val type = list[position].type.toInt()
         when (type) {
-            0 -> (holder as ResultTypeViewHolder).bindTo(list[position].resultItem)
-            1 -> (holder as NoticeTypeViewHolder).bindTo(list[position].noticeItem)
+            0 -> (holder as NoticeTypeViewHolder).bindTo(list[position].noticeItem)
+            1 -> (holder as ResultTypeViewHolder).bindTo(list[position].resultItem)
         }
 
     }

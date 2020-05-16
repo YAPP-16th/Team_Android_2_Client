@@ -1,6 +1,8 @@
 package kr.yapp.teamplay.teammain.data
 
 import com.google.gson.annotations.SerializedName
+import kr.yapp.teamplay.teammain.data.dto.SimpleClubInfo
+import java.io.Serializable
 
 /**
  * @author ohjuntaek
@@ -12,11 +14,7 @@ import com.google.gson.annotations.SerializedName
  * TODO : 동호회 게시판(Feed) 추가
  */
 data class TeamMainItem(
-    @SerializedName("tag") val tag: String,
-    @SerializedName("name") val name: String,
-    @SerializedName("address") val address: String,
-    @SerializedName("create_date") val createDate: String,
-    @SerializedName("member_count") val memberCount: String,
-    @SerializedName("feed_count") val feedCount: String,
-    @SerializedName("feed_items") val feedItems: List<TeamMainFeedItem>
-)
+    @SerializedName("simpleClubInfo") val simpleClubInfo: SimpleClubInfo,
+    @SerializedName("feedCount") val feedCount: String,
+    @SerializedName("simpleFeeds") val feedItems: List<TeamMainFeedItem>
+) : Serializable

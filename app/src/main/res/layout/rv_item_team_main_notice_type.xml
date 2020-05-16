@@ -28,6 +28,7 @@
             android:paddingBottom="5dp"
             android:text="@string/item_notice_type_label_notice"
             android:textColor="#15ce79"
+            android:textSize="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,7 +40,7 @@
             android:fontFamily="@font/sf_pro_bold"
             android:text="@{noticeItem.title}"
             android:textColor="#262626"
-            android:textSize="15sp"
+            android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="@id/item_notice_type_label_tv"
             app:layout_constraintStart_toEndOf="@id/item_notice_type_label_tv"
             app:layout_constraintTop_toTopOf="@id/item_notice_type_label_tv"
@@ -52,7 +53,7 @@
             android:layout_marginStart="10dp"
             android:text="@{noticeItem.createTime}"
             android:textColor="@color/brownGrey"
-            android:textSize="11sp"
+            android:textSize="11dp"
             app:layout_constraintBottom_toBottomOf="@id/item_notice_type_label_tv"
             app:layout_constraintStart_toEndOf="@id/item_notice_type_title_tv"
             app:layout_constraintTop_toTopOf="parent"
@@ -67,7 +68,7 @@
             android:lineSpacingExtra="8.5sp"
             android:text="@{noticeItem.content}"
             android:textColor="#262626"
-            android:textSize="13sp"
+            android:textSize="13dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_notice_type_label_tv"
@@ -83,7 +84,7 @@
             android:gravity="center_horizontal"
             android:text="Comment 1"
             android:textColor="#828282"
-            android:textSize="11sp"
+            android:textSize="11dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_notice_type_content_tv" />
 
@@ -95,7 +96,7 @@
             android:gravity="center_horizontal"
             android:text="Check 21"
             android:textColor="#ff4d41"
-            android:textSize="11sp"
+            android:textSize="11dp"
             app:layout_constraintStart_toEndOf="@id/item_notice_type_comment_count_tv"
             app:layout_constraintTop_toTopOf="@id/item_notice_type_comment_count_tv" />
 

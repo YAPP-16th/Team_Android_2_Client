@@ -10,8 +10,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import kr.yapp.teamplay.teammain.data.TeamMainItem
-import kr.yapp.teamplay.teammain.data.TeamMainRepository
-import kr.yapp.teamplay.teammain.domain.TeamMainRepositoryImpl
+import kr.yapp.teamplay.teammain.data.TeamMainRepositoryImpl
+import kr.yapp.teamplay.teammain.domain.TeamMainRepository
 
 class TeamMainViewModel(
     private val teamMainRepository: TeamMainRepository =
@@ -34,7 +34,7 @@ class TeamMainViewModel(
     }
 
     fun fetchTeamMainItem(): Disposable {
-        return teamMainRepository.getTeamMainItem()
+        return teamMainRepository.getTeamMainItem("1")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ item ->
@@ -44,5 +44,4 @@ class TeamMainViewModel(
             })
             .addTo(compositeDisposable)
     }
-
 }
