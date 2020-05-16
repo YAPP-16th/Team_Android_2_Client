@@ -1,8 +1,9 @@
-package kr.yapp.teamplay.teammain.data
+package kr.yapp.teamplay.data.teammain
 
 import io.reactivex.Single
 import kr.yapp.teamplay.data.RetrofitManager
-import kr.yapp.teamplay.teammain.domain.TeamMainRepository
+import kr.yapp.teamplay.data.teammain.response.TeamMainItemResponse
+import kr.yapp.teamplay.domain.repository.TeamMainRepository
 
 class TeamMainRepositoryImpl(
     private val teamMainService: TeamMainService =
@@ -10,7 +11,7 @@ class TeamMainRepositoryImpl(
             TeamMainService::class.java
         )
 ) : TeamMainRepository {
-    override fun getTeamMainItem(clubId: String): Single<TeamMainItem> {
+    override fun getTeamMainItem(clubId: String): Single<TeamMainItemResponse> {
         return teamMainService.getTeamMainInfo(clubId)
     }
 }

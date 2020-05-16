@@ -1,10 +1,12 @@
-package kr.yapp.teamplay.teammain.presentation
+package kr.yapp.teamplay.presentation.teammain
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -25,7 +27,9 @@ class TeamMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         transStatusWhiteTextBar()
         setDataBinding()
+        setLiveDataObserver()
         setRecyclerView()
+        getTeamMainItem()
     }
 
     private fun setRecyclerView() {
@@ -38,17 +42,10 @@ class TeamMainActivity : AppCompatActivity() {
                     LinearLayoutManager.VERTICAL
                 )
             )
-            adapter = TeamMainAdapter(mutableListOf())
+            adapter = TeamMainAdapter(
+                mutableListOf()
+            )
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        getTeamMainItem()
-    }
-
-    private fun getTeamMainItem() {
-        viewModel.fetchTeamMainItem()
     }
 
     private fun setDataBinding() {
@@ -57,9 +54,23 @@ class TeamMainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
     }
 
+    private fun setLiveDataObserver() {
+        viewModel.showShimmer.observe(this, Observer { start ->
+            if (start) binding.teamMainShimmerViewContainer.startShimmer()
+            else binding.teamMainShimmerViewContainer.stopShimmer()
+        })
+    }
+
+    private fun getTeamMainItem() {
+        viewModel.fetchTeamMainItem { message ->
+            Toast.makeText(this@TeamMainActivity, message, Toast.LENGTH_LONG).show()
+        }
+    }
+
     private fun transStatusWhiteTextBar() {
         window.run {
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             statusBarColor = Color.TRANSPARENT
         }
     }

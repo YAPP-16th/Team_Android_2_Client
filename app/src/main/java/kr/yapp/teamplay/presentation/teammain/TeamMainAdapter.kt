@@ -1,4 +1,4 @@
-package kr.yapp.teamplay.teammain.presentation
+package kr.yapp.teamplay.presentation.teammain
 
 import android.os.Build
 import android.text.Html
@@ -7,19 +7,20 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
+import kr.yapp.teamplay.data.teammain.response.TeamMainFeedItemResponse
 import kr.yapp.teamplay.databinding.RvItemTeamMainNoticeTypeBinding
 import kr.yapp.teamplay.databinding.RvItemTeamMainResultTypeBinding
-import kr.yapp.teamplay.teammain.data.NoticeItem
-import kr.yapp.teamplay.teammain.data.ResultItem
-import kr.yapp.teamplay.teammain.data.TeamMainFeedItem
+import kr.yapp.teamplay.domain.entity.teammain.NoticeItem
+import kr.yapp.teamplay.domain.entity.teammain.ResultItem
+import kr.yapp.teamplay.domain.entity.teammain.TeamMainItemType
 
 class TeamMainAdapter(
-    private var list: MutableList<TeamMainFeedItem>
+    private var list: MutableList<TeamMainFeedItemResponse>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
-            0 -> {
+            TeamMainItemType.NOTICE.ordinal -> {
                 NoticeTypeViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
@@ -29,7 +30,7 @@ class TeamMainAdapter(
                     )
                 )
             }
-            1 -> {
+            TeamMainItemType.MATCH_RESULT.ordinal -> {
                 ResultTypeViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
@@ -46,19 +47,18 @@ class TeamMainAdapter(
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val type = list[position].type.toInt()
+        val type = TeamMainItemType.values().get(list[position].type)
         when (type) {
-            0 -> (holder as NoticeTypeViewHolder).bindTo(list[position].noticeItem)
-            1 -> (holder as ResultTypeViewHolder).bindTo(list[position].resultItem)
+            TeamMainItemType.NOTICE -> (holder as NoticeTypeViewHolder).bindTo(list[position].noticeItem)
+            TeamMainItemType.MATCH_RESULT -> (holder as ResultTypeViewHolder).bindTo(list[position].resultItem)
         }
-
     }
 
     override fun getItemViewType(position: Int): Int {
-        return list[position].type.toInt()
+        return list[position].type
     }
 
-    fun updateTeamMain(updateList: List<TeamMainFeedItem>) {
+    fun updateTeamMain(updateList: List<TeamMainFeedItemResponse>) {
         list.clear()
         list.addAll(updateList)
         notifyDataSetChanged()
@@ -69,7 +69,7 @@ class TeamMainAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(resultItem: ResultItem?) {
             binding.resultItem = resultItem
-            if (binding.resultItem!!.isWin) {
+            if (binding.resultItem!!.win) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     binding.resultContent = Html.fromHtml(
                         String.format(

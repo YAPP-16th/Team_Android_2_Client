@@ -8,7 +8,7 @@
 
         <variable
             name="resultItem"
-            type="kr.yapp.teamplay.teammain.data.ResultItem" />
+            type="kr.yapp.teamplay.domain.entity.teammain.ResultItem" />
 
         <variable
             name="resultContent"
@@ -73,9 +73,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_item_result_type"
+            android:contentDescription="background of macth result"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_result_type_label_tv" />
+            app:layout_constraintTop_toBottomOf="@id/item_result_type_label_tv"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/item_result_type_match_result_iv"
@@ -87,6 +89,7 @@
             android:text="@{result}"
             android:textColor="@color/colorWhite"
             android:textSize="30dp"
+            tools:text="Win or Lose"
             app:layout_constraintEnd_toEndOf="@id/item_result_type_match_result_bg_iv"
             app:layout_constraintStart_toStartOf="@id/item_result_type_match_result_bg_iv"
             app:layout_constraintTop_toTopOf="@id/item_result_type_match_result_bg_iv" />
@@ -118,7 +121,8 @@
             android:textColor="#828282"
             android:textSize="11dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_result_type_match_result_bg_iv" />
+            app:layout_constraintTop_toBottomOf="@+id/item_result_type_match_result_bg_iv"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/item_result_type_check_count_tv"
@@ -130,7 +134,8 @@
             android:textColor="#ff4d41"
             android:textSize="11dp"
             app:layout_constraintStart_toEndOf="@id/item_result_type_comment_count_tv"
-            app:layout_constraintTop_toTopOf="@id/item_result_type_comment_count_tv" />
+            app:layout_constraintTop_toTopOf="@id/item_result_type_comment_count_tv"
+            tools:ignore="HardcodedText" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
