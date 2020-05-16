@@ -2,7 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.EditPostActivity">
+    tools:context=".presentation.editpost.EditPostActivity">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="kr.yapp.teamplay.presentation.editpost.EditPostViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -57,6 +64,7 @@
             android:paddingEnd="20dp"
             android:paddingBottom="15dp"
             android:text="@string/edit_post_posting"
+            android:onClick="@{() -> viewModel.writePost()}"
             android:textColor="#ff4d41"
             android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="@id/edit_post_back_button"
@@ -81,7 +89,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:text="@string/edit_post_notice"
+            android:text="@{viewModel.type}"
             android:textColor="#262626"
             android:textSize="14dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +124,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_post_type_text_view" />
 
-        <TextView
+        <EditText
             android:id="@+id/edit_post_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,8 +132,13 @@
             android:layout_marginTop="12dp"
             android:textColor="#262626"
             android:textSize="14dp"
+            android:autofillHints="공지 제목을 입력해 주세요"
+            android:background="@null"
+            android:hint="@string/edit_post_title_hint"
+            android:inputType="text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edit_post_divider_2"
+            android:text="@={viewModel.title}"
             tools:text="3월 2주 공지입니다." />
 
         <View
@@ -148,6 +161,7 @@
             android:background="@null"
             android:hint="@string/edit_post_edit_text_hint"
             android:inputType="text"
+            android:text="@={viewModel.content}"
             android:textColor="#262626"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"

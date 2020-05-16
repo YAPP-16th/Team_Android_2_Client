@@ -1,5 +1,6 @@
 package kr.yapp.teamplay.presentation.teammain
 
+import android.content.Intent
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityTeamMainBinding
+import kr.yapp.teamplay.presentation.editpost.EditPostActivity
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
 
@@ -55,7 +57,9 @@ class TeamMainActivity : AppCompatActivity() {
             )
             adapter = TeamMainAdapter(
                 mutableListOf()
-            )
+            ) {
+                startActivity(Intent(this@TeamMainActivity, EditPostActivity::class.java))
+            }
         }
     }
 

@@ -15,12 +15,14 @@ import kr.yapp.teamplay.domain.entity.teammain.ResultItem
 import kr.yapp.teamplay.domain.entity.teammain.TeamMainItemType
 
 class TeamMainAdapter(
-    private var list: MutableList<TeamMainFeedItemResponse>
+    private var list: MutableList<TeamMainFeedItemResponse>,
+    val onClick: () -> Unit = {}
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        when (viewType) {
-            TeamMainItemType.NOTICE.ordinal -> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val type = TeamMainItemType.values().get(viewType)
+        return when (type) {
+            TeamMainItemType.NOTICE -> {
                 NoticeTypeViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
@@ -30,7 +32,7 @@ class TeamMainAdapter(
                     )
                 )
             }
-            TeamMainItemType.MATCH_RESULT.ordinal -> {
+            TeamMainItemType.MATCH_RESULT -> {
                 ResultTypeViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
@@ -40,8 +42,8 @@ class TeamMainAdapter(
                     )
                 )
             }
-            else -> throw IllegalArgumentException()
         }
+    }
 
 
     override fun getItemCount(): Int = list.size
@@ -98,6 +100,10 @@ class TeamMainAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(noticeItem: NoticeItem?) {
             binding.noticeItem = noticeItem
+            binding.root.setOnLongClickListener { view ->
+                onClick()
+                true
+            }
         }
     }
 
