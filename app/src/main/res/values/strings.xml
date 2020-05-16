@@ -36,6 +36,13 @@
     <string name="myTeamSelectTeamTitle">팀 찾기</string>
     <string name="myTeamSelectTeamDescription">당신을 기다리고 있는 팀들을 찾아보세요</string>
     <string name="myTeamSelectTeamCount">현재 258개의 팀이 팀플레이 중입니다</string>
+    <string name="edit_post_delete">삭제</string>
+    <string name="edit_post_posting">글쓰기</string>
+    <string name="edit_post_notice">공지사항</string>
+    <string name="edit_post_edit_text_hint">게시글 내용을 작성해 주세요</string>
+    <string name="edit_post_map">지도</string>
+    <string name="edit_post_share">공유</string>
+    <string name="edit_post_camera">사진</string>
 
     <!--match list-->
     <string name="match_list_header">매치 리스트</string>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.EditPostActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <ImageButton
+            android:id="@+id/edit_post_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="go to team selected team main"
+            android:src="@drawable/ic_prev"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/edit_post_delete_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="15dp"
+            android:text="@string/edit_post_delete"
+            android:textColor="#828282"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_post_back_button"
+            app:layout_constraintEnd_toStartOf="@+id/edit_post_write_button"
+            app:layout_constraintTop_toTopOf="@id/edit_post_back_button"
+            tools:text="삭제" />
+
+        <Button
+            android:id="@+id/edit_post_write_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="10dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="15dp"
+            android:text="@string/edit_post_posting"
+            android:textColor="#ff4d41"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_post_back_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edit_post_back_button"
+            tools:text="글쓰기" />
+
+        <View
+            android:id="@+id/edit_post_divider_1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorVeryLightPink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_post_back_button" />
+
+        <TextView
+            android:id="@+id/edit_post_type_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/edit_post_notice"
+            android:textColor="#262626"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_post_divider_1"
+            tools:text="공지사항" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="select type of this post"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="12dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="5dp"
+            android:src="@drawable/ic_arrow_drop_down_gray_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_post_type_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edit_post_type_text_view"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:id="@+id/edit_post_divider_2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/colorVeryLightPink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_post_type_text_view" />
+
+        <TextView
+            android:id="@+id/edit_post_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            android:textColor="#262626"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_post_divider_2"
+            tools:text="3월 2주 공지입니다." />
+
+        <View
+            android:id="@+id/edit_post_divider_3"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/colorVeryLightPink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_post_title_tv" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="25dp"
+            android:autofillHints="게시글 내용을 작성해 주세요"
+            android:background="@null"
+            android:hint="@string/edit_post_edit_text_hint"
+            android:inputType="text"
+            android:textColor="#262626"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_post_divider_3" />
+
+        <View
+            android:id="@+id/edit_post_divider_5"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/colorVeryLightPink"
+            app:layout_constraintBottom_toTopOf="@id/edit_post_divider_6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/edit_post_guideline_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/edit_post_guideline_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66" />
+
+        <TextView
+            android:id="@+id/edit_post_map_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_location"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="@string/edit_post_map"
+            android:textColor="#828282"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_post_divider_6"
+            app:layout_constraintEnd_toEndOf="@id/edit_post_guideline_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edit_post_divider_5"
+            tools:text="지도" />
+
+
+        <TextView
+            android:id="@+id/edit_post_camera_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_camera"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="@string/edit_post_camera"
+            android:textColor="#828282"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_post_divider_6"
+            app:layout_constraintEnd_toEndOf="@id/edit_post_guideline_2"
+            app:layout_constraintStart_toStartOf="@id/edit_post_guideline_1"
+            app:layout_constraintTop_toTopOf="@id/edit_post_divider_5"
+            tools:text="사진" />
+
+        <TextView
+            android:id="@+id/edit_post_share_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_share"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="@string/edit_post_share"
+            android:textColor="#828282"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_post_divider_6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/edit_post_guideline_2"
+            app:layout_constraintTop_toTopOf="@id/edit_post_divider_5"
+            tools:text="공유" />
+
+
+        <View
+            android:id="@+id/edit_post_divider_6"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="35dp"
+            android:background="@color/colorVeryLightPink"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
