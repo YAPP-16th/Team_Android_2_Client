@@ -18,6 +18,7 @@ import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivitySelectMyTeamBinding
 import kr.yapp.teamplay.domain.entity.MyTeam
 import kr.yapp.teamplay.presentation.myteam.create.TeamCreateActivity
+import kr.yapp.teamplay.presentation.teammain.TeamMainActivity
 
 class MyTeamSelectActivity : AppCompatActivity() {
 
@@ -46,22 +47,30 @@ class MyTeamSelectActivity : AppCompatActivity() {
 
     private fun setRecyclerView() {
         binding.myTeamList.run {
-            layoutManager = LinearLayoutManager(this@MyTeamSelectActivity, RecyclerView.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(this@MyTeamSelectActivity, RecyclerView.HORIZONTAL, false)
             itemAnimator = DefaultItemAnimator()
             setHasFixedSize(true)
-            adapter = MyTeamAdapter {
-                startActivity(Intent(this@MyTeamSelectActivity, TeamCreateActivity::class.java))
-            }.apply {
+            adapter = MyTeamAdapter(
+                onCardClick = {
+                    startActivity(Intent(this@MyTeamSelectActivity, TeamCreateActivity::class.java))
+                },
+                onCardClickToGoTeamMain = {
+                    startActivity(Intent(this@MyTeamSelectActivity, TeamMainActivity::class.java))
+                }
+            ).apply {
                 updateMyTeam(listOf(MyTeam(), MyTeam(), MyTeam(isCreateCard = true)))
             }
-            object:PagerSnapHelper() {
+            object : PagerSnapHelper() {
             }.attachToRecyclerView(this)
         }
     }
 
+
     private fun transStatusWhiteTextBar() {
         window.run {
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             statusBarColor = Color.TRANSPARENT
         }
     }
