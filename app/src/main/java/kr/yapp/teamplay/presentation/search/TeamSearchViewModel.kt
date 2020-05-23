@@ -1,6 +1,5 @@
 package kr.yapp.teamplay.presentation.search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Single
@@ -31,13 +30,8 @@ class TeamSearchViewModel(
                 Pair(clubList, count) })
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ list ->
-                _teams.value = list
-                Log.d("TeamSearchViewModel", "list : $list")
-            }, { throwable ->
-                showError(throwable.message.toString())
-                Log.d("TeamSearchViewModel", "throwable : ${throwable.localizedMessage}")
-            })
+            .subscribe({ list -> _teams.value = list },
+                { throwable -> showError(throwable.message.toString()) })
             .addDisposable()
 
     }
