@@ -25,6 +25,7 @@ class TeamSearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setBinding()
         setRecyclerView()
+        viewModel.getAllClub()
     }
 
     private fun setBinding() {

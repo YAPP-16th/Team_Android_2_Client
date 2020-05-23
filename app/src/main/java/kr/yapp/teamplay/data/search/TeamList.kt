@@ -18,6 +18,7 @@ data class TeamList(
 )
 
 fun TeamList.toEntity() = Entity(
+    clubId = clubId,
     title = title,
     address = address,
     currentCount = currentCount
