@@ -1,7 +1,7 @@
 package kr.yapp.teamplay.data.search
 
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import kr.yapp.teamplay.domain.entity.TeamList as Entity
 
 /**
  * Created by Lee Oh Hyoung on 2020/05/23.
@@ -15,4 +15,10 @@ data class TeamList(
     val address: String,
     @SerializedName("current_count")
     val currentCount: Int = 0
-): Serializable
+)
+
+fun TeamList.toEntity() = Entity(
+    title = title,
+    address = address,
+    currentCount = currentCount
+)

@@ -8,8 +8,8 @@ import kr.yapp.teamplay.R
 import kr.yapp.teamplay.data.search.TeamList
 import kr.yapp.teamplay.databinding.ItemTeamListBinding
 import kr.yapp.teamplay.databinding.ItemTeamListHeaderBinding
-import kr.yapp.teamplay.presentation.util.Bindable
-import kr.yapp.teamplay.presentation.util.BindableData
+import kr.yapp.teamplay.presentation.util.widget.Bindable
+import kr.yapp.teamplay.presentation.util.widget.BindableData
 
 /**
  * Created by Lee Oh Hyoung on 2020/05/23.
@@ -46,7 +46,8 @@ class TeamListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private class TeamListHeaderViewHolder(
         private val binding: ItemTeamListHeaderBinding
-    ) : RecyclerView.ViewHolder(binding.root), Bindable<TeamListHeaderViewHolder.Item> {
+    ) : RecyclerView.ViewHolder(binding.root),
+        Bindable<TeamListHeaderViewHolder.Item> {
 
         class Item(val count: Int = 13) : BindableData(ViewType.HEADER.ordinal)
 
@@ -57,7 +58,8 @@ class TeamListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private class TeamListViewHolder (
         private val binding: ItemTeamListBinding
-    ) : RecyclerView.ViewHolder(binding.root), Bindable<TeamListViewHolder.Item> {
+    ) : RecyclerView.ViewHolder(binding.root),
+        Bindable<TeamListViewHolder.Item> {
 
         class Item(val teamList: TeamList) : BindableData(ViewType.LIST.ordinal)
 

@@ -9,13 +9,13 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
-import kr.yapp.teamplay.data.teammain.TeamMainRepositoryImpl
+import kr.yapp.teamplay.data.teammain.TeamRepositoryImpl
 import kr.yapp.teamplay.data.teammain.response.TeamMainItemResponse
 import kr.yapp.teamplay.domain.usecase.TeamMainUseCase
 
 class TeamMainViewModel(
     private val teamMainUseCase: TeamMainUseCase =
-        TeamMainUseCase(TeamMainRepositoryImpl())
+        TeamMainUseCase(TeamRepositoryImpl())
 ) : ViewModel() {
 
     companion object {
