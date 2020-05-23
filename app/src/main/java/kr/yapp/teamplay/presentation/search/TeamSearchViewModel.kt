@@ -1,13 +1,14 @@
 package kr.yapp.teamplay.presentation.search
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.SingleObserver
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import kr.yapp.teamplay.data.teammain.TeamRepositoryImpl
-import kr.yapp.teamplay.domain.entity.TeamList
+import kr.yapp.teamplay.domain.entity.ClubListInfo
 import kr.yapp.teamplay.domain.repository.TeamRepository
 import kr.yapp.teamplay.presentation.BaseViewModel
 
@@ -19,27 +20,26 @@ class TeamSearchViewModel(
         TeamRepositoryImpl()
 ) : BaseViewModel() {
 
-    private val _teams = MutableLiveData<List<TeamList>>()
-    val teams: LiveData<List<TeamList>> get() = _teams
+    private val _teams = MutableLiveData<Pair<List<ClubListInfo>, Int>>()
+    val teams: LiveData<Pair<List<ClubListInfo>, Int>> get() = _teams
 
     fun getAllClub() {
-        teamRepository.getAllClub()
+        Single.zip(
+            teamRepository.getAllClub(),
+            teamRepository.getAllClubCount(),
+            BiFunction { clubList: List<ClubListInfo>, count: Int ->
+                Pair(clubList, count) })
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object: SingleObserver<List<TeamList>> {
-                override fun onSuccess(list: List<TeamList>) {
-                    _teams.value = list
-                }
-
-                override fun onSubscribe(d: Disposable) {
-                    /* explicitly empty */
-                }
-
-                override fun onError(e: Throwable) {
-                    showError(e.message.toString())
-                }
-
+            .subscribe({ list ->
+                _teams.value = list
+                Log.d("TeamSearchViewModel", "list : $list")
+            }, { throwable ->
+                showError(throwable.message.toString())
+                Log.d("TeamSearchViewModel", "throwable : ${throwable.localizedMessage}")
             })
+            .addDisposable()
+
     }
 
 }

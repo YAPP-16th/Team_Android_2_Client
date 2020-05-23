@@ -2,12 +2,13 @@ package kr.yapp.teamplay.presentation.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
-import kr.yapp.teamplay.data.search.TeamList
 import kr.yapp.teamplay.databinding.ItemTeamListBinding
 import kr.yapp.teamplay.databinding.ItemTeamListHeaderBinding
+import kr.yapp.teamplay.domain.entity.ClubListInfo
 import kr.yapp.teamplay.presentation.util.widget.Bindable
 import kr.yapp.teamplay.presentation.util.widget.BindableData
 
@@ -44,12 +45,21 @@ class TeamListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int = bindableData.count()
 
+    override fun getItemViewType(position: Int): Int = bindableData[position].viewType
+
+    fun update(teamInfo: Pair<List<ClubListInfo>, Int>) {
+        bindableData.clear()
+        bindableData += TeamListHeaderViewHolder.Item(teamInfo.second)
+        bindableData += teamInfo.first.map { club -> TeamListViewHolder.Item(club) }
+        notifyDataSetChanged()
+    }
+
     private class TeamListHeaderViewHolder(
         private val binding: ItemTeamListHeaderBinding
     ) : RecyclerView.ViewHolder(binding.root),
         Bindable<TeamListHeaderViewHolder.Item> {
 
-        class Item(val count: Int = 13) : BindableData(ViewType.HEADER.ordinal)
+        class Item(val count: Int) : BindableData(ViewType.HEADER.ordinal)
 
         override fun bindTo(item: Item) {
             binding.count = item.count
@@ -61,10 +71,18 @@ class TeamListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) : RecyclerView.ViewHolder(binding.root),
         Bindable<TeamListViewHolder.Item> {
 
-        class Item(val teamList: TeamList) : BindableData(ViewType.LIST.ordinal)
+        class Item(val teamList: ClubListInfo) : BindableData(ViewType.LIST.ordinal)
 
         override fun bindTo(item: Item) {
             binding.team = item.teamList
         }
+    }
+}
+
+@BindingAdapter("setTeamList")
+fun setTeamList(recyclerView: RecyclerView, teamInfo: Pair<List<ClubListInfo>, Int>?) {
+    teamInfo?.let { info ->
+        val adapter = recyclerView.adapter as? TeamListAdapter
+        adapter?.update(info)
     }
 }
