@@ -16,7 +16,8 @@ import kr.yapp.teamplay.domain.entity.teammain.TeamMainItemType
 
 class TeamMainAdapter(
     private var list: MutableList<TeamMainFeedItemResponse>,
-    val onClick: () -> Unit = {}
+    val onClickNotice: () -> Unit = {},
+    val onClickResult: (isWin: Boolean?, teamName: String?) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -71,7 +72,7 @@ class TeamMainAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(resultItem: ResultItem?) {
             binding.resultItem = resultItem
-            if (binding.resultItem!!.win) {
+            if (binding.resultItem!!.isWin) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     binding.resultContent = Html.fromHtml(
                         String.format(
@@ -92,7 +93,8 @@ class TeamMainAdapter(
                 }
                 binding.result = "LOSE"
             }
-        }
+            binding.root.setOnClickListener { onClickResult(resultItem?.isWin, resultItem?.teamName) }
+        } // end of bindTo()
     }
 
     inner class NoticeTypeViewHolder(
@@ -101,7 +103,7 @@ class TeamMainAdapter(
         fun bindTo(noticeItem: NoticeItem?) {
             binding.noticeItem = noticeItem
             binding.root.setOnLongClickListener { view ->
-                onClick()
+                onClickNotice()
                 true
             }
         }

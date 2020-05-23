@@ -89,7 +89,7 @@
             android:text="@{result}"
             android:textColor="@color/colorWhite"
             android:textSize="30dp"
-            tools:text="Win or Lose"
+            tools:text="Win"
             app:layout_constraintEnd_toEndOf="@id/item_result_type_match_result_bg_iv"
             app:layout_constraintStart_toStartOf="@id/item_result_type_match_result_bg_iv"
             app:layout_constraintTop_toTopOf="@id/item_result_type_match_result_bg_iv" />

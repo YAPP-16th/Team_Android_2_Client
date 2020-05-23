@@ -56,10 +56,16 @@ class TeamMainActivity : AppCompatActivity() {
                 )
             )
             adapter = TeamMainAdapter(
-                mutableListOf()
-            ) {
-                startActivity(Intent(this@TeamMainActivity, EditPostActivity::class.java))
-            }
+                mutableListOf(),
+                onClickNotice = {
+                    startActivity(Intent(this@TeamMainActivity, EditPostActivity::class.java))
+                }, onClickResult = { isWin, teamName ->
+                    val intent = Intent(this@TeamMainActivity, PopupMatchResultActivity::class.java)
+                    intent.putExtra("isWin", isWin)
+                    intent.putExtra("teamName", teamName)
+                    startActivity(intent)
+                }
+            )
         }
     }
 

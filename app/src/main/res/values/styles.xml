@@ -13,6 +13,11 @@
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
     </style>
 
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/bg_popup_radius_15</item>
+    </style>
+
     <style name="TransparentStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
         <item name="android:windowContentTransitions">true</item>
