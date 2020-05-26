@@ -25,7 +25,7 @@ class EditPostActivity : AppCompatActivity() {
 
     private fun getPostInfo() {
         viewModel.fetchPost({ message ->
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+            Toast.makeText(this@EditPostActivity, message, Toast.LENGTH_LONG).show()
         })
     }
 
