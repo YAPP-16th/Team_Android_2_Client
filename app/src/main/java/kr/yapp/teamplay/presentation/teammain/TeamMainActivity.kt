@@ -1,5 +1,6 @@
 package kr.yapp.teamplay.presentation.teammain
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -14,8 +15,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityTeamMainBinding
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.singleTop
 
 class TeamMainActivity : AppCompatActivity() {
+
+    companion object {
+        fun start(context: Context) {
+            context.startActivity(
+                context.intentFor<TeamMainActivity>().singleTop()
+            )
+        }
+    }
 
     private lateinit var binding: ActivityTeamMainBinding
 
