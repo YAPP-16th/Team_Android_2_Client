@@ -7,3 +7,4 @@ data class MatchList(
     val gameDay : String = "4월 30일 14:00 - 17:00",
     val location : String = "여의도 한강공원 농구코트 3"
 )
+
