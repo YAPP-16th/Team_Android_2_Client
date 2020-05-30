@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityTeamMainBinding
 import kr.yapp.teamplay.presentation.editpost.EditPostActivity
+import kr.yapp.teamplay.presentation.match_schedule.MatchScheduleActivity
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
 
@@ -80,6 +81,9 @@ class TeamMainActivity : AppCompatActivity() {
             if (start) binding.teamMainShimmerViewContainer.startShimmer()
             else binding.teamMainShimmerViewContainer.stopShimmer()
         })
+        viewModel.matchScheduleClick.observe(this, Observer {
+            startActivity(Intent(this@TeamMainActivity, MatchScheduleActivity::class.java))
+        })
     }
 
     private fun getTeamMainItem() {
@@ -95,4 +99,5 @@ class TeamMainActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
     }
+
 }

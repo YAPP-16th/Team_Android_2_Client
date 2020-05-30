@@ -12,6 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import kr.yapp.teamplay.data.teammain.TeamRepositoryImpl
 import kr.yapp.teamplay.data.teammain.response.TeamMainItemResponse
 import kr.yapp.teamplay.domain.usecase.TeamMainUseCase
+import kr.yapp.teamplay.presentation.util.SingleLiveEvent
 
 class TeamMainViewModel(
     private val teamMainUseCase: TeamMainUseCase =
@@ -30,6 +31,10 @@ class TeamMainViewModel(
 
     private val _teamMainItem = MutableLiveData<TeamMainItemResponse>()
     val teamMainItem: LiveData<TeamMainItemResponse> get() = _teamMainItem
+
+
+    private val _matchScheduleClick = SingleLiveEvent<Any>()
+    val matchScheduleClick : LiveData<Any> get() = _matchScheduleClick
 
     override fun onCleared() {
         compositeDisposable.dispose()
@@ -58,5 +63,9 @@ class TeamMainViewModel(
                 toast(it.message)
             })
             .addTo(compositeDisposable)
+    }
+
+    fun startSchedule() {
+        _matchScheduleClick.call()
     }
 }
