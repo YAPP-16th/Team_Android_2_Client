@@ -87,4 +87,11 @@
     <string name="item_team_list_header_count">조건에 맞는 팀이 %d개 있어요</string>
     <string name="item_team_list_address_and_count">%s 소재 | 현재회원수 %d명</string>
 
+    <!-- MatchSearch -->
+    <string name="search_submit">검색하기</string>
+    <string name="search_box_text">매치를 검색해보세요</string>
+    <string name="search_condition">검색 조건</string>
+    <string name="search_init">초기화</string>
+    <string name="search_date">매치 날짜</string>
+
 </resources>
