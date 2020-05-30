@@ -1,5 +1,6 @@
 package kr.yapp.teamplay.presentation.teammain
 
+import android.content.Intent
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityTeamMainBinding
+import kr.yapp.teamplay.presentation.editpost.EditPostActivity
+import kr.yapp.teamplay.presentation.match_schedule.MatchScheduleActivity
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
 
@@ -54,7 +57,15 @@ class TeamMainActivity : AppCompatActivity() {
                 )
             )
             adapter = TeamMainAdapter(
-                mutableListOf()
+                mutableListOf(),
+                onClickNotice = {
+                    startActivity(Intent(this@TeamMainActivity, EditPostActivity::class.java))
+                }, onClickResult = { isWin, teamName ->
+                    val intent = Intent(this@TeamMainActivity, PopupMatchResultActivity::class.java)
+                    intent.putExtra("isWin", isWin)
+                    intent.putExtra("teamName", teamName)
+                    startActivity(intent)
+                }
             )
         }
     }
@@ -69,6 +80,9 @@ class TeamMainActivity : AppCompatActivity() {
         viewModel.showShimmer.observe(this, Observer { start ->
             if (start) binding.teamMainShimmerViewContainer.startShimmer()
             else binding.teamMainShimmerViewContainer.stopShimmer()
+        })
+        viewModel.matchScheduleClick.observe(this, Observer {
+            startActivity(Intent(this@TeamMainActivity, MatchScheduleActivity::class.java))
         })
     }
 
@@ -85,4 +99,5 @@ class TeamMainActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
     }
+
 }

@@ -15,12 +15,15 @@ import kr.yapp.teamplay.domain.entity.teammain.ResultItem
 import kr.yapp.teamplay.domain.entity.teammain.TeamMainItemType
 
 class TeamMainAdapter(
-    private var list: MutableList<TeamMainFeedItemResponse>
+    private var list: MutableList<TeamMainFeedItemResponse>,
+    val onClickNotice: () -> Unit = {},
+    val onClickResult: (isWin: Boolean?, teamName: String?) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        when (viewType) {
-            TeamMainItemType.NOTICE.ordinal -> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val type = TeamMainItemType.values().get(viewType)
+        return when (type) {
+            TeamMainItemType.NOTICE -> {
                 NoticeTypeViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
@@ -30,7 +33,7 @@ class TeamMainAdapter(
                     )
                 )
             }
-            TeamMainItemType.MATCH_RESULT.ordinal -> {
+            TeamMainItemType.MATCH_RESULT -> {
                 ResultTypeViewHolder(
                     DataBindingUtil.inflate(
                         LayoutInflater.from(parent.context),
@@ -40,8 +43,8 @@ class TeamMainAdapter(
                     )
                 )
             }
-            else -> throw IllegalArgumentException()
         }
+    }
 
 
     override fun getItemCount(): Int = list.size
@@ -69,7 +72,7 @@ class TeamMainAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(resultItem: ResultItem?) {
             binding.resultItem = resultItem
-            if (binding.resultItem!!.win) {
+            if (binding.resultItem!!.isWin) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     binding.resultContent = Html.fromHtml(
                         String.format(
@@ -90,7 +93,8 @@ class TeamMainAdapter(
                 }
                 binding.result = "LOSE"
             }
-        }
+            binding.root.setOnClickListener { onClickResult(resultItem?.isWin, resultItem?.teamName) }
+        } // end of bindTo()
     }
 
     inner class NoticeTypeViewHolder(
@@ -98,6 +102,10 @@ class TeamMainAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(noticeItem: NoticeItem?) {
             binding.noticeItem = noticeItem
+            binding.root.setOnLongClickListener { view ->
+                onClickNotice()
+                true
+            }
         }
     }
 
