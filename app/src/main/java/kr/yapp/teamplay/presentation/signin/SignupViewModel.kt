@@ -4,17 +4,20 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import kr.yapp.teamplay.data.auth.AuthRepositoryImpl
 import kr.yapp.teamplay.domain.usecase.SignupUsecase
+import kr.yapp.teamplay.presentation.BaseViewModel
 import kr.yapp.teamplay.presentation.util.HashingPassword
 import kr.yapp.teamplay.presentation.util.SingleLiveEvent
 import kr.yapp.teamplay.presentation.util.sha256
+import org.jetbrains.anko.getStackTraceString
 
 class SignupViewModel(
     private val signupUsecase : SignupUsecase =
         SignupUsecase(AuthRepositoryImpl())
-) : ViewModel() {
+) : BaseViewModel() {
     val signUpEmailClick : SingleLiveEvent<Void> = SingleLiveEvent()
     val signUpPasswordClick : SingleLiveEvent<Void> = SingleLiveEvent()
     val signUpNicknameClick : SingleLiveEvent<Void> = SingleLiveEvent()
@@ -25,6 +28,9 @@ class SignupViewModel(
     val signUpEmailError : SingleLiveEvent<Void> = SingleLiveEvent()
     val signUpPasswordError : SingleLiveEvent<Void> = SingleLiveEvent()
     val signUpNicknameError : SingleLiveEvent<Void> = SingleLiveEvent()
+
+    val alreadyRegisteredNickname : SingleLiveEvent<Void> = SingleLiveEvent()
+    val alreadyRegisteredEmail : SingleLiveEvent<Void> = SingleLiveEvent()
 
     val signupEmail : MutableLiveData<String> = MutableLiveData()
     val signupPassword : MutableLiveData<String> = MutableLiveData()
@@ -79,9 +85,14 @@ class SignupViewModel(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     signUpNicknameFinish.call()
-                }, {
-                    it.localizedMessage
+                }, { e ->
+                    if (e.localizedMessage == "email is already registered") {
+                        alreadyRegisteredEmail.call()
+                    } else if (e.localizedMessage == "email is already registered") {
+                        alreadyRegisteredNickname.call()
+                    }
                 })
+                .addDisposable()
         } else {
             signUpNicknameError.call()
         }

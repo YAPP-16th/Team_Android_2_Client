@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -26,6 +27,7 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setDataBinding()
+        setLiveDataObserver()
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, SignupEmailFragment(signupViewModel)).commit()
         transStatusWhiteTextBar()
     }
@@ -34,6 +36,16 @@ class SignupActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signup)
         binding.lifecycleOwner = this
         binding.viewModel = signupViewModel
+    }
+
+    private fun setLiveDataObserver() {
+        signupViewModel.alreadyRegisteredEmail.observe(this, Observer {
+            Toast.makeText(this, "이미 등록된 이메일입니다.", Toast.LENGTH_LONG).show()
+        })
+
+        signupViewModel.alreadyRegisteredNickname.observe(this, Observer {
+            Toast.makeText(this, "이미 등록된 닉네임입니다.", Toast.LENGTH_LONG).show()
+        })
     }
 
     fun goToSignupPassword() {
