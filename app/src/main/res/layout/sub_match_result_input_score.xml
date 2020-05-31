@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="15dp"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:background="@drawable/item_search_active_label"
+        android:textColor="#262626"
+        android:fontFamily="@font/sf_pro_regular"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        android:layout_marginEnd="5dp"
+        tools:text="3점슛" />
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_weight="5"
+        android:background="@drawable/item_search_deactive_label"
+        android:hint="점수를 입력해주세요."
+        android:fontFamily="@font/sf_pro_regular"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textSize="12dp"
+        android:minHeight="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_weight="5"
+        android:background="@drawable/item_search_deactive_label"
+        android:hint="점수를 입력해주세요."
+        android:fontFamily="@font/sf_pro_regular"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textSize="12dp"
+        android:minHeight="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+</LinearLayout>

@@ -170,6 +170,7 @@
                     android:paddingEnd="35dp"
                     android:paddingBottom="10dp"
                     android:text="@string/team_main_matching_list"
+                    android:onClick="@{() -> viewModel.startMatchList()}"
                     android:textColor="@color/colorWhite"
                     android:textSize="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
