@@ -4,7 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="kr.yapp.teamplay.presentation.matchresultinput.MatchResultInputViewModel" />
     </data>
 
     <LinearLayout
@@ -33,7 +35,7 @@
                 android:textColor="#ff4d41"
                 android:textSize="13dp"
                 android:fontFamily="@font/sf_pro_bold"
-                tools:text="결과등록" />
+                android:text="결과등록" />
 
         </RelativeLayout>
 
@@ -135,19 +137,21 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/sf_pro_regular"
-            android:text="스코어 (호스트 / 게스트)" />
+            android:text="상세결과 (호스트 / 게스트)" />
 
         <LinearLayout
+            android:id="@+id/match_result_input_score_detail_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <include
-                layout="@layout/sub_match_result_input_score"/>
+                layout="@layout/sub_match_result_input_score_detail"/>
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/match_result_input_add_record_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14dp"
@@ -157,7 +161,8 @@
             android:textColor="@color/colorWhite"
             android:background="@drawable/bg_match_result_input_button"
             android:fontFamily="@font/sf_pro_regular"
-            tools:text="기록 추가하기"
+            android:onClick="@{() -> viewModel.onAddScoreClick()}"
+            android:text="기록 추가하기"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"/>
@@ -173,6 +178,7 @@
             android:fontFamily="@font/sf_pro_regular"/>
 
         <LinearLayout
+            android:id="@+id/match_result_input_personal_score_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -191,7 +197,8 @@
             android:textColor="@color/colorWhite"
             android:background="@drawable/bg_match_result_input_button"
             android:fontFamily="@font/sf_pro_regular"
-            tools:text="기록 추가하기"
+            android:text="기록 추가하기"
+            android:onClick="@{() -> viewModel.onAddRecordClick()}"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"/>
@@ -215,6 +222,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minLines="10"
             android:textSize="12dp"
             android:fontFamily="@font/sf_pro_regular"
             android:paddingStart="10dp"

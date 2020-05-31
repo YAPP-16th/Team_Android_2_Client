@@ -94,4 +94,13 @@
     <string name="search_init">초기화</string>
     <string name="search_date">매치 날짜</string>
 
+    <string-array name="match_result_input_score_detail">
+        <item>리바운드</item>
+        <item>어시스트</item>
+        <item>스틸</item>
+        <item>블록</item>
+        <item>2점</item>
+        <item>3점</item>
+    </string-array>
+
 </resources>

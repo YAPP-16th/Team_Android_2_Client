@@ -16,7 +16,7 @@
         android:drawable="@drawable/ic_arrow_down_red"
         android:top="12dp"
         android:bottom="12dp"
-        android:left="60dp"
+        android:left="80dp"
         android:right="10dp">
 
     </item>
