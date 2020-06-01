@@ -1,4 +1,4 @@
-package kr.yapp.teamplay.domain.entity
+package kr.yapp.teamplay.domain.entity.matchlist
 
 data class UserInfo (
     val email : String,

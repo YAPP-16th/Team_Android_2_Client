@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.data.match.MatchList
-import kr.yapp.teamplay.domain.entity.MatchInfo
 import kr.yapp.teamplay.databinding.ItemMatchListBinding
 
 class MatchListAdapter(viewModel : MatchListViewModel) : RecyclerView.Adapter<MatchListAdapter.MatchListViewHolder>() {

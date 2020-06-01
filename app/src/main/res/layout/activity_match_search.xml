@@ -230,70 +230,68 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/search_et_location" />
 
-            <ToggleButton
+            <Button
                 android:id="@+id/search_three_on_three"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/item_search_deactive_label"
                 android:fontFamily="@font/sf_pro_bold"
-                android:padding="12dp"
-                android:textOn="3대3"
-                android:textOff="3대3"
+                android:text="3대3"
                 android:textAlignment="center"
                 android:textColor="@color/colorWireFrameBackground"
                 android:textSize="14dp"
+                app:layout_constraintHorizontal_weight="0.3"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/search_five_on_five_half"
                 app:layout_constraintTop_toBottomOf="@+id/search_rule" />
 
-            <ToggleButton
+            <Button
                 android:id="@+id/search_five_on_five_half"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:background="@drawable/item_search_deactive_label"
                 android:fontFamily="@font/sf_pro_bold"
-                android:padding="12dp"
-                android:textOn="5대5 반코트"
-                android:textOff="5대5 반코트"
+                android:text="5대5 반코트"
                 android:textAlignment="center"
                 android:textColor="@color/colorWireFrameBackground"
                 android:textSize="14dp"
+                app:layout_constraintHorizontal_weight="0.4"
                 app:layout_constraintBottom_toBottomOf="@+id/search_three_on_three"
                 app:layout_constraintEnd_toStartOf="@+id/search_five_on_five_full"
                 app:layout_constraintStart_toEndOf="@+id/search_three_on_three"
                 app:layout_constraintTop_toTopOf="@id/search_three_on_three" />
 
-            <ToggleButton
+            <Button
                 android:id="@+id/search_five_on_five_full"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:background="@drawable/item_search_deactive_label"
                 android:fontFamily="@font/sf_pro_bold"
-                android:textOn="5대5 풀코트"
-                android:textOff="5대5 풀코트"
+                android:text="5대5 풀코트"
                 android:textAlignment="center"
                 android:textColor="@color/colorWireFrameBackground"
                 android:textSize="14dp"
+                app:layout_constraintHorizontal_weight="0.4"
                 app:layout_constraintBottom_toBottomOf="@+id/search_three_on_three"
                 app:layout_constraintEnd_toStartOf="@+id/search_etc"
                 app:layout_constraintStart_toEndOf="@+id/search_five_on_five_half"
                 app:layout_constraintTop_toTopOf="@id/search_three_on_three" />
 
-            <ToggleButton
+            <Button
                 android:id="@+id/search_etc"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:background="@drawable/item_search_deactive_label"
                 android:fontFamily="@font/sf_pro_bold"
-                android:padding="12dp"
-                android:textOn="기타"
-                android:textOff="기타"
+                android:text="기타"
                 android:textAlignment="center"
                 android:textColor="@color/colorWireFrameBackground"
                 android:textSize="14dp"
+                app:layout_constraintHorizontal_weight="0.3"
                 app:layout_constraintBottom_toBottomOf="@+id/search_three_on_three"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/search_five_on_five_full"

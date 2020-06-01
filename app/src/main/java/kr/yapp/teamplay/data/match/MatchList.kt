@@ -1,6 +1,6 @@
 package kr.yapp.teamplay.data.match
 
-import kr.yapp.teamplay.domain.entity.MatchInfo
+import kr.yapp.teamplay.domain.entity.matchlist.MatchInfo
 
 data class MatchList(
     val description1 : String?,

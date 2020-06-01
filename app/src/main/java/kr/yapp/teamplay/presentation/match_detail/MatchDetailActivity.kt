@@ -1,12 +1,11 @@
 package kr.yapp.teamplay.presentation.match_detail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import kr.yapp.teamplay.R
-import kr.yapp.teamplay.domain.entity.MatchInfo
+import kr.yapp.teamplay.domain.entity.matchlist.MatchInfo
 import kr.yapp.teamplay.databinding.ActivityMatchDetailBinding
 
 class MatchDetailActivity : AppCompatActivity() {

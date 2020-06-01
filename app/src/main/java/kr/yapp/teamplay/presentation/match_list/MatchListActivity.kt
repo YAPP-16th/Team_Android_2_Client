@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_match_list.*
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityMatchListBinding
-import kr.yapp.teamplay.domain.entity.Search
+import kr.yapp.teamplay.domain.entity.matchlist.Search
 import kr.yapp.teamplay.presentation.match_detail.MatchDetailActivity
-import org.jetbrains.anko.startActivityForResult
 
 class MatchListActivity : AppCompatActivity() {
 
@@ -76,7 +75,7 @@ class MatchListActivity : AppCompatActivity() {
 
     private fun startDetailList() {
         val intent = Intent(this, MatchDetailActivity::class.java)
-        intent.putExtra("matchInfo",viewModel.matchInfo.value)
+            .putExtra("matchInfo",viewModel.matchInfo.value)
         startActivity(intent)
     }
 

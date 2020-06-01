@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kr.yapp.teamplay.data.match.MatchList
-import kr.yapp.teamplay.domain.entity.MatchInfo
+import kr.yapp.teamplay.domain.entity.matchlist.MatchInfo
 import kr.yapp.teamplay.data.match.MatchRepositoryImpl
-import kr.yapp.teamplay.domain.entity.Search
+import kr.yapp.teamplay.domain.entity.matchlist.Search
 import kr.yapp.teamplay.domain.usecase.GetMatchList
 import kr.yapp.teamplay.domain.usecase.GetMatchSearchList
 import kr.yapp.teamplay.presentation.util.SingleLiveEvent

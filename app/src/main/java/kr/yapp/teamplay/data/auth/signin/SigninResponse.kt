@@ -2,7 +2,7 @@ package kr.yapp.teamplay.data.auth.signin
 
 import com.google.gson.annotations.SerializedName
 import kr.yapp.teamplay.domain.entity.AccessToken
-import kr.yapp.teamplay.domain.entity.UserInfo
+import kr.yapp.teamplay.domain.entity.matchlist.UserInfo
 
 data class SigninResponse (
     @SerializedName("accessToken") val accessToken : AccessToken,

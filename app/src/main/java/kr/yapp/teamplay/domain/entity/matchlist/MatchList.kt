@@ -1,4 +1,4 @@
-package kr.yapp.teamplay.domain.entity
+package kr.yapp.teamplay.domain.entity.matchlist
 
 data class MatchList(
     val title : String = "저희와 함께 즐거운 매치 한 판 어때요?",
