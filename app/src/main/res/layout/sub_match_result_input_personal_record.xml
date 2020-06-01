@@ -1,51 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="item"
+            type="kr.yapp.teamplay.domain.entity.matchresultinput.PersonalRecordItem" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="10dp"
-        android:background="@drawable/item_search_active_label"
-        android:textColor="#262626"
-        android:fontFamily="@font/sf_pro_regular"
-        android:gravity="center_vertical"
-        android:entries="@array/match_result_input_score_detail"
-        android:paddingStart="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="15dp"
-        tools:text="3점슛" />
+        android:layout_marginTop="10dp">
 
-    <EditText
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:layout_weight="5"
-        android:background="@drawable/item_search_deactive_label"
-        android:hint="횟수"
-        android:fontFamily="@font/sf_pro_regular"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textSize="12dp"
-        android:minHeight="0dp"
-        android:inputType="number"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"/>
-    <EditText
-        android:layout_width="130dp"
-        android:layout_height="40dp"
-        android:layout_weight="5"
-        android:background="@drawable/item_search_deactive_label"
-        android:hint="선수명"
-        android:fontFamily="@font/sf_pro_regular"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:inputType="text"
-        android:textSize="12dp"
-        android:minHeight="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/item_search_active_label"
+            android:entries="@array/match_result_input_score_detail"
+            android:fontFamily="@font/sf_pro_regular"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:textColor="#262626"
+            android:textSize="10dp"
+            bind:selectedValue="@={item.matchResultType}"
+            tools:text="3점슛" />
 
-</LinearLayout>
+        <EditText
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="5"
+            android:background="@drawable/item_search_deactive_label"
+            android:fontFamily="@font/sf_pro_regular"
+            android:hint="횟수"
+            android:inputType="number"
+            android:minHeight="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@={item.score}"
+            android:textSize="12dp" />
+
+        <EditText
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="5"
+            android:background="@drawable/item_search_deactive_label"
+            android:fontFamily="@font/sf_pro_regular"
+            android:hint="선수명"
+            android:inputType="text"
+            android:minHeight="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@={item.receiver}"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+</layout>

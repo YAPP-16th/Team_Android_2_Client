@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityMatchResultInputBinding
 
@@ -20,8 +23,9 @@ class MatchResultInputActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setDataBinding()
         setLiveDataObserver()
+        setRecyclerView()
+        initItem()
     }
-
 
     private fun setDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_match_result_input)
@@ -32,13 +36,37 @@ class MatchResultInputActivity : AppCompatActivity() {
 
     private fun setLiveDataObserver() {
         viewModel.onAddScoreTvClick.observe(this, Observer {
-            val subScoreActivity = SubScoreDetailActivity(this)
-            binding.matchResultInputScoreDetailLayout.addView(subScoreActivity)
+            viewModel.addScoreDetail()
         })
 
         viewModel.onAddRecordTvClick.observe(this, Observer {
-            val subRecordActivity = SubPersonalRecordActivity(this)
-            binding.matchResultInputPersonalScoreLayout.addView(subRecordActivity)
+            viewModel.addRecordDetail()
+        })
+
+        viewModel.onClickRegisterResult.observe(this, Observer {
+            viewModel.registerResult()
         })
     }
+
+    private fun setRecyclerView() {
+        binding.matchResultInputScoreDetailLayout.run {
+            layoutManager =
+                LinearLayoutManager(this@MatchResultInputActivity, RecyclerView.VERTICAL, false)
+            itemAnimator = DefaultItemAnimator()
+            adapter = ScoreDetailAdapter(mutableListOf())
+        }
+
+        binding.matchResultInputPersonalScoreLayout.run {
+            layoutManager =
+                LinearLayoutManager(this@MatchResultInputActivity, RecyclerView.VERTICAL, false)
+            itemAnimator = DefaultItemAnimator()
+            adapter = PersonalRecordAdapter(mutableListOf())
+        }
+    }
+
+    private fun initItem() {
+        viewModel.addScoreDetail()
+        viewModel.addRecordDetail()
+    }
+
 }
