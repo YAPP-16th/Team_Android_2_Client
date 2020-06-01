@@ -15,13 +15,18 @@ import kr.yapp.teamplay.presentation.util.widget.BindableData
 /**
  * Created by Lee Oh Hyoung on 2020/05/23.
  */
-class TeamListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TeamListAdapter(
+    private val onFilterClick: () -> Unit = {},
+    private val onTeamClick: () -> Unit = {}
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     enum class ViewType {
         HEADER, LIST
     }
 
     private val bindableData: MutableList<BindableData> = mutableListOf()
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(ViewType.values()[viewType]) {
@@ -49,32 +54,39 @@ class TeamListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun update(teamInfo: Pair<List<ClubListInfo>, Int>) {
         bindableData.clear()
-        bindableData += TeamListHeaderViewHolder.Item(teamInfo.second)
-        bindableData += teamInfo.first.map { club -> TeamListViewHolder.Item(club) }
+        bindableData += TeamListHeaderViewHolder.Item(teamInfo.second, onFilterClick)
+        bindableData += teamInfo.first.map { club ->
+            TeamListViewHolder.Item(club, onTeamClick) }
         notifyDataSetChanged()
     }
 
-    private class TeamListHeaderViewHolder(
+    class TeamListHeaderViewHolder(
         private val binding: ItemTeamListHeaderBinding
     ) : RecyclerView.ViewHolder(binding.root),
         Bindable<TeamListHeaderViewHolder.Item> {
 
-        class Item(val count: Int) : BindableData(ViewType.HEADER.ordinal)
+        data class Item(
+            val count: Int,
+            val onFilterClick: () -> Unit
+        ) : BindableData(ViewType.HEADER.ordinal)
 
         override fun bindTo(item: Item) {
-            binding.count = item.count
+            binding.item = item
         }
     }
 
-    private class TeamListViewHolder (
+    class TeamListViewHolder (
         private val binding: ItemTeamListBinding
     ) : RecyclerView.ViewHolder(binding.root),
         Bindable<TeamListViewHolder.Item> {
 
-        class Item(val teamList: ClubListInfo) : BindableData(ViewType.LIST.ordinal)
+        class Item(
+            val team: ClubListInfo,
+            val onTeamClick: () -> Unit
+        ) : BindableData(ViewType.LIST.ordinal)
 
         override fun bindTo(item: Item) {
-            binding.team = item.teamList
+            binding.item = item
         }
     }
 }
