@@ -13,5 +13,6 @@ interface MatchService {
                      @Query("page") page : Int?,
                      @Query("rowsPerPage") rowsPerPage : Int?,
                      @Query("sortBy") sortBy : String?,
-                     @Query("startTime") startTime : String?) : Single<MatchListResponse>
+                     @Query("startTimeFrom") startTimeFrom : String?,
+                     @Query("startTimeTo") startTimeTo : String?) : Single<MatchListResponse>
 }

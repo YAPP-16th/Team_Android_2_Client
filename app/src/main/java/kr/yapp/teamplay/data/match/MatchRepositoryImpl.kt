@@ -8,14 +8,14 @@ class MatchRepositoryImpl(
     private val matchService: MatchService =
         RetrofitManager.create(MatchService::class.java)
 ) : MatchRepository {
-    override fun getMatchList(currentPage : Int) : Single<MatchListResponse>{
+    override fun getMatchList(
+        currentPage: Int?, startTimeFrom: String?
+        , startTimeTo: String?, location: String?
+        , matchStyle: String?
+    ) : Single<MatchListResponse>{
         return matchService.getMatchList(
-            null,null,null,null,currentPage,null,null,null
+            null,null, location, matchStyle, currentPage,null,null,startTimeFrom, startTimeTo
         )
-    }
-
-    override fun getMatchSchedule() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getMatchDetail() {

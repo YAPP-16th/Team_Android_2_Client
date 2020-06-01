@@ -7,5 +7,5 @@ class GetMatchList (
     private val repository : MatchRepository = MatchRepositoryImpl()
 ) {
     fun getMatchList(currentPage : Int) =
-        repository.getMatchList(currentPage)
+        repository.getMatchList(currentPage, null, null, null, null)
 }

@@ -4,7 +4,6 @@ import io.reactivex.Single
 import kr.yapp.teamplay.data.match.MatchListResponse
 
 interface MatchRepository {
-    fun getMatchList(currentPage : Int): Single<MatchListResponse>
-    fun getMatchSchedule()
+    fun getMatchList(currentPage: Int?, startTimeFrom: String?, startTimeTo: String?, location: String?, matchStyle: String?): Single<MatchListResponse>
     fun getMatchDetail()
 }

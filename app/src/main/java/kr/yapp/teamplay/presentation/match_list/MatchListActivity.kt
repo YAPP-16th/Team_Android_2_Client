@@ -2,7 +2,6 @@ package kr.yapp.teamplay.presentation.match_list
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -13,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_match_list.*
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityMatchListBinding
+import kr.yapp.teamplay.domain.entity.Search
 import kr.yapp.teamplay.presentation.match_detail.MatchDetailActivity
+import org.jetbrains.anko.startActivityForResult
 
 class MatchListActivity : AppCompatActivity() {
 
@@ -30,6 +31,10 @@ class MatchListActivity : AppCompatActivity() {
 
         setDataBinding()
         setLiveDataObserver()
+
+        binding.matchListSearch.setOnClickListener {
+            startMatchSearchActivity()
+        }
     }
 
     private fun setDataBinding() {
@@ -75,8 +80,23 @@ class MatchListActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun startMatchSearchActivity() {
+        val intent = Intent(this, MatchSearchActivity::class.java)
+        startActivityForResult(intent, 1)
+    }
+
     private fun startMatchRegister() {
         Toast.makeText(this, "매칭 등록 화면으로 이동합니다.", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode==1 && resultCode==2) {
+            val search : Search = data?.getSerializableExtra("search") as Search
+            viewModel.setSearch(search)
+            viewModel.getSearchListData()
+        }
     }
 
     val refreshListScroll : RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener() {

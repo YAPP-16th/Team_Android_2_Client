@@ -97,5 +97,8 @@
     <string name="search_condition">검색 조건</string>
     <string name="search_init">초기화</string>
     <string name="search_date">매치 날짜</string>
+    <string name="search_location">매치 장소</string>
+    <string name="search_rule">경기 방식</string>
+    <string name="search_city">찾으시는 장소를 입력해주세요.</string>
 
 </resources>
