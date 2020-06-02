@@ -10,6 +10,7 @@ import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityMatchSearchBinding
 import kr.yapp.teamplay.domain.entity.matchlist.MatchStyle
 import kr.yapp.teamplay.domain.entity.matchlist.Search
+import org.jetbrains.anko.backgroundColor
 import java.text.SimpleDateFormat
 import java.util.*
 

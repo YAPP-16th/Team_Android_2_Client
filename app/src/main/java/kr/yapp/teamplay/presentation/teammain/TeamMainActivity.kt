@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityTeamMainBinding
 import kr.yapp.teamplay.presentation.editpost.EditPostActivity
+import kr.yapp.teamplay.presentation.match_list.MatchListActivity
 import kr.yapp.teamplay.presentation.match_schedule.MatchScheduleActivity
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
@@ -83,6 +84,9 @@ class TeamMainActivity : AppCompatActivity() {
         })
         viewModel.matchScheduleClick.observe(this, Observer {
             startActivity(Intent(this@TeamMainActivity, MatchScheduleActivity::class.java))
+        })
+        viewModel.matchListClick.observe(this, Observer {
+            startActivity(Intent(this@TeamMainActivity, MatchListActivity::class.java))
         })
     }
 

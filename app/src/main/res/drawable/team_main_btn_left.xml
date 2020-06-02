@@ -3,4 +3,5 @@
     <item android:drawable="@drawable/team_main_btn_left_false" android:state_pressed="false" />
     <item android:drawable="@drawable/team_main_btn_true" android:state_pressed="true" />
 
+
 </selector>

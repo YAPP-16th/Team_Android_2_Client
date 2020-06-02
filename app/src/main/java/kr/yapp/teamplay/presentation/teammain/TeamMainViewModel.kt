@@ -36,6 +36,10 @@ class TeamMainViewModel(
     private val _matchScheduleClick = SingleLiveEvent<Any>()
     val matchScheduleClick : LiveData<Any> get() = _matchScheduleClick
 
+
+    private val _matchListClick = SingleLiveEvent<Any>()
+    val matchListClick : LiveData<Any> get() = _matchListClick
+
     override fun onCleared() {
         compositeDisposable.dispose()
         super.onCleared()
@@ -67,5 +71,9 @@ class TeamMainViewModel(
 
     fun startSchedule() {
         _matchScheduleClick.call()
+    }
+
+    fun startMatchList() {
+        _matchListClick.call()
     }
 }

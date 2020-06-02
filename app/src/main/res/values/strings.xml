@@ -101,4 +101,13 @@
     <string name="search_rule">경기 방식</string>
     <string name="search_city">찾으시는 장소를 입력해주세요.</string>
 
+    <string-array name="match_result_input_score_detail">
+        <item>리바운드</item>
+        <item>어시스트</item>
+        <item>스틸</item>
+        <item>블록</item>
+        <item>2점</item>
+        <item>3점</item>
+    </string-array>
+
 </resources>
