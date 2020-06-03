@@ -44,7 +44,8 @@ class TeamMainActivity : AppCompatActivity() {
         setDataBinding()
         setLiveDataObserver()
         setRecyclerView()
-        getTeamMainItem()
+        val position = intent.getIntExtra("id", -1)
+        getTeamMainItem(position)
     }
 
     private fun setRecyclerView() {
@@ -90,8 +91,8 @@ class TeamMainActivity : AppCompatActivity() {
         })
     }
 
-    private fun getTeamMainItem() {
-        viewModel.fetchTeamMainItem { message ->
+    private fun getTeamMainItem(position: Int) {
+        viewModel.fetchTeamMainItem(position) { message ->
             Toast.makeText(this@TeamMainActivity, message, Toast.LENGTH_LONG).show()
         }
     }

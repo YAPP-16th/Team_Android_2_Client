@@ -14,7 +14,7 @@ import kr.yapp.teamplay.domain.entity.MyTeam
 
 class MyTeamAdapter(
     private val onCardClick: () -> Unit = {},
-    private val onCardClickToGoTeamMain: () -> Unit = {}
+    private val onCardClickToGoTeamMain: (position : Int) -> Unit = {}
 ) : RecyclerView.Adapter<MyTeamAdapter.MyTeamViewHolder>() {
 
     private val teams: ArrayList<MyTeam> = arrayListOf()
@@ -28,7 +28,7 @@ class MyTeamAdapter(
         ))
 
     override fun onBindViewHolder(holder: MyTeamViewHolder, position: Int) =
-        holder.bindTo(teams[position])
+        holder.bindTo(teams[position], teams[position].id.toInt())
 
     override fun getItemCount(): Int = teams.count()
 
@@ -44,7 +44,7 @@ class MyTeamAdapter(
 
         private val displayMetrics = DisplayMetrics()
 
-        fun bindTo(myTeam: MyTeam) {
+        fun bindTo(myTeam: MyTeam, position: Int) {
             binding.myTeam = myTeam
 //            (itemView.context as AppCompatActivity).windowManager.defaultDisplay.getMetrics(displayMetrics)
 //            itemView.layoutParams.width = (displayMetrics.widthPixels.toDouble() - 64.dpToPixel()).toInt()
@@ -55,7 +55,7 @@ class MyTeamAdapter(
                 }
             } else {
                 binding.rvMyTeamRootLayout.setOnClickListener {
-                    onCardClickToGoTeamMain()
+                    onCardClickToGoTeamMain(position)
                 }
             }
         }
