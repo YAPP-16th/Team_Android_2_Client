@@ -53,9 +53,9 @@ class TeamMainViewModel(
         _showShimmer.value = false
     }
 
-    fun fetchTeamMainItem(toast: (message: String?) -> Unit = {}): Disposable {
+    fun fetchTeamMainItem(position : Int, toast: (message: String?) -> Unit = {}): Disposable {
         startShimmer()
-        return teamMainUseCase.setClubInfo("1")
+        return teamMainUseCase.setClubInfo(position.toString())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ item ->
