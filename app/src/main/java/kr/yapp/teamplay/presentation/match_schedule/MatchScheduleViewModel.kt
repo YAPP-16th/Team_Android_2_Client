@@ -33,8 +33,8 @@ class MatchScheduleViewModel(
         super.onCleared()
     }
 
-    fun fetchScheduleItem(): Disposable {
-        return matchScheduleUseCase.getOuterItem("1")
+    fun fetchScheduleItem(clubId: String): Disposable {
+        return matchScheduleUseCase.getOuterItem(clubId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ item ->

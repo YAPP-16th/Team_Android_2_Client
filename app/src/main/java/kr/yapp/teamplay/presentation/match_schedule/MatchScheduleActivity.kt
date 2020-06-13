@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
+import kr.yapp.teamplay.TeamPlayApplication
 import kr.yapp.teamplay.databinding.ActivityMatchScheduleBinding
+import kr.yapp.teamplay.util.PreferenceManager
 
 class MatchScheduleActivity : AppCompatActivity() {
 
+    private var clubId: String = "1"
     private lateinit var binding: ActivityMatchScheduleBinding
 
     private val viewModel: MatchScheduleViewModel by lazy {
@@ -20,6 +23,7 @@ class MatchScheduleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        clubId = PreferenceManager.getSelectedTeamId(TeamPlayApplication.appContext).toString()
         setDataBinding()
         setLiveDataObserver()
         setRecyclerView()
@@ -27,7 +31,7 @@ class MatchScheduleActivity : AppCompatActivity() {
     }
 
     private fun getItem() {
-        viewModel.fetchScheduleItem()
+        viewModel.fetchScheduleItem(clubId)
     }
 
     private fun setRecyclerView() {

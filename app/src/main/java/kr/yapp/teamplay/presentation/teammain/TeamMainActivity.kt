@@ -33,6 +33,7 @@ class TeamMainActivity : AppCompatActivity() {
         }
     }
 
+    private var clubId: Int = 1
     private var isAdmin: Boolean = false
     private lateinit var binding: ActivityTeamMainBinding
 
@@ -46,11 +47,11 @@ class TeamMainActivity : AppCompatActivity() {
         setDataBinding()
         setLiveDataObserver()
         setRecyclerView()
-        val position = intent.getIntExtra("id", -1)
+        clubId = intent.getIntExtra("id", -1)
         isAdmin = intent.getBooleanExtra("isAdmin", false)
         viewModel.isAdmin.value = isAdmin
         Log.i("TTT", "isADmin : " + isAdmin)
-        getTeamMainItem(position)
+        getTeamMainItem(clubId)
     }
 
     private fun setRecyclerView() {
@@ -89,7 +90,9 @@ class TeamMainActivity : AppCompatActivity() {
             else binding.teamMainShimmerViewContainer.stopShimmer()
         })
         viewModel.matchScheduleClick.observe(this, Observer {
-            startActivity(Intent(this@TeamMainActivity, MatchScheduleActivity::class.java))
+            val intent = Intent(this@TeamMainActivity, MatchScheduleActivity::class.java)
+            intent.putExtra("clubId", clubId)
+            startActivity(intent)
         })
         viewModel.matchListClick.observe(this, Observer {
             startActivity(Intent(this@TeamMainActivity, MatchListActivity::class.java))
