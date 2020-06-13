@@ -16,12 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
+import kr.yapp.teamplay.TeamPlayApplication
 import kr.yapp.teamplay.databinding.ActivitySelectMyTeamBinding
 import kr.yapp.teamplay.domain.entity.MyTeam
 import kr.yapp.teamplay.domain.entity.UserRole
 import kr.yapp.teamplay.presentation.myteam.create.TeamCreateActivity
 import kr.yapp.teamplay.presentation.search.TeamSearchActivity
 import kr.yapp.teamplay.presentation.teammain.TeamMainActivity
+import kr.yapp.teamplay.util.PreferenceManager
 
 class MyTeamSelectActivity : AppCompatActivity() {
 
@@ -95,6 +97,7 @@ class MyTeamSelectActivity : AppCompatActivity() {
                     val intent = Intent(this@MyTeamSelectActivity, TeamMainActivity::class.java)
                     intent.putExtra("isAdmin", viewModel.clubInfoList.value!!.clubsInfo[position].userRole == UserRole.ADMIN)
                     intent.putExtra("id" ,id)
+                    PreferenceManager.setSelectedTeamId(TeamPlayApplication.appContext, id)
                     startActivity(intent)
                 }
             ).apply {

@@ -3,6 +3,8 @@ package kr.yapp.teamplay.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.jetbrains.annotations.Nullable;
+
 public class PreferenceManager {
     public static final String PREFERENCES_NAME = "rebuild_preference";
 
@@ -11,6 +13,7 @@ public class PreferenceManager {
     private static final String refreshTokenKey = "refreshToken";
 
     private static final String userIdKey = "userId";
+    private static final String selectedTeamIdKey = "selectedTeamId";
 
 
     private static SharedPreferences getPreferences(Context context) {
@@ -54,6 +57,20 @@ public class PreferenceManager {
 
         SharedPreferences prefs = getPreferences(context);
         String value = prefs.getString(userIdKey, "잉?");
+        return value;
+    }
+
+    public static void setSelectedTeamId(Context context, int id) {
+        SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(selectedTeamIdKey, id);
+        editor.commit();
+    }
+
+    public static int getSelectedTeamId(Context context) {
+
+        SharedPreferences prefs = getPreferences(context);
+        int value = prefs.getInt(selectedTeamIdKey, 0);
         return value;
     }
 }

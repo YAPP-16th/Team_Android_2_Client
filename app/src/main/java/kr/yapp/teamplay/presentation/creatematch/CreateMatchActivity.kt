@@ -1,6 +1,5 @@
 package kr.yapp.teamplay.presentation.creatematch
 
-import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -40,9 +39,13 @@ class CreateMatchActivity : AppCompatActivity() {
     }
 
     private fun setLiveDataObserver() {
+        viewModel.click.observe(this, androidx.lifecycle.Observer {
+            finish()
+        })
     }
 
     private fun setViewListener() {
+
         val startDateSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
             val calendar = Calendar.getInstance()
             calendar.set(calendar.get(Calendar.YEAR),

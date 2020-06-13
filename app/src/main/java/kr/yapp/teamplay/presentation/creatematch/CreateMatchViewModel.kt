@@ -3,17 +3,21 @@ package kr.yapp.teamplay.presentation.creatematch
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import kr.yapp.teamplay.TeamPlayApplication
 import kr.yapp.teamplay.data.creatematch.CreateMatchRepositoryImpl
 import kr.yapp.teamplay.data.match.MatchStyle
 import kr.yapp.teamplay.domain.entity.creatematch.RequestCreateMatch
 import kr.yapp.teamplay.domain.entity.creatematch.RequestCreateMatchDto
 import kr.yapp.teamplay.domain.entity.creatematch.RequestCreateMatchViewDto
 import kr.yapp.teamplay.domain.usecase.CreateMatchUseCase
+import kr.yapp.teamplay.presentation.util.SingleLiveEvent
+import kr.yapp.teamplay.util.PreferenceManager
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -27,6 +31,8 @@ class CreateMatchViewModel(
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     val requestCreateMatchViewDto = RequestCreateMatchViewDto()
+    private val _click = SingleLiveEvent<Any>()
+    val click : LiveData<Any> get() = _click
 
     override fun onCleared() {
         compositeDisposable.dispose()
@@ -36,7 +42,7 @@ class CreateMatchViewModel(
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun requestCreateMatch() {
-
+        _click.call()
         val startDate = LocalDateTime.of(
             LocalDate.of(
                 GregorianCalendar().get(Calendar.YEAR),
@@ -72,8 +78,8 @@ class CreateMatchViewModel(
 
 
         val requestMatchInfo = RequestCreateMatch()
-        requestMatchInfo.requesterClubId = 3
-        requestMatchInfo.requesterUserId = 9
+        requestMatchInfo.requesterClubId = PreferenceManager.getSelectedTeamId(TeamPlayApplication.appContext)
+        requestMatchInfo.requesterUserId = PreferenceManager.getUserId(TeamPlayApplication.appContext).toInt()
         requestMatchInfo.createMatchDto =
             RequestCreateMatchDto(
                 requestCreateMatchViewDto.title.value,
