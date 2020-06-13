@@ -10,7 +10,7 @@ import java.util.*
 
 data class RequestCreateMatchViewDto (
     val title: MutableLiveData<String> = MutableLiveData(),
-    val matchMonth : MutableLiveData<String> = MutableLiveData(Calendar.getInstance().get(Calendar.MONTH).toString() + 1),
+    val matchMonth : MutableLiveData<String> = MutableLiveData((Calendar.getInstance().get(Calendar.MONTH) + 1).toString()),
     val matchDate : MutableLiveData<String> = MutableLiveData(Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()),
     val startDate: MutableLiveData<String> = MutableLiveData(SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().time).toString()),
     val endDate: MutableLiveData<String> = MutableLiveData(SimpleDateFormat("hh:mm:ss").format(Calendar.getInstance().time).toString()),

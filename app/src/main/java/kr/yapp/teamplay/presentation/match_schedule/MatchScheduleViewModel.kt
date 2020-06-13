@@ -1,5 +1,6 @@
 package kr.yapp.teamplay.presentation.match_schedule
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -42,6 +43,34 @@ class MatchScheduleViewModel(
                 Log.e(TAG, "get : ${item}")
             }, {
                 Log.e(TAG, "error: ${it.message}")
+            })
+            .addTo(compositeDisposable)
+    }
+
+    fun acceptMatch(matchId: String, context : Context) {
+        matchScheduleUseCase.acceptMatch(matchId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.i("TTT", "ok")
+                (context as MatchScheduleActivity).finish()
+            }, {
+                Log.e("TTT", "error! : " + it.message)
+                (context as MatchScheduleActivity).finish()
+            })
+            .addTo(compositeDisposable)
+    }
+
+    fun declineMatch(matchId: String, context : Context) {
+        matchScheduleUseCase.declineMatch(matchId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.i("TTT", "ok")
+                (context as MatchScheduleActivity).finish()
+            }, {
+                Log.e("TTT", "error! : " + it.message)
+                (context as MatchScheduleActivity).finish()
             })
             .addTo(compositeDisposable)
     }

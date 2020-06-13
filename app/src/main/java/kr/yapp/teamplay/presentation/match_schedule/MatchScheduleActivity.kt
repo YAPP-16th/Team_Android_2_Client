@@ -43,7 +43,7 @@ class MatchScheduleActivity : AppCompatActivity() {
             setHasFixedSize(true)
 
             adapter = MatchScheduleOuterAdapter(
-                mutableListOf()
+                mutableListOf(), viewModel
             )
         }
     }
