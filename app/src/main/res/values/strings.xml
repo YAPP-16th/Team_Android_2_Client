@@ -110,4 +110,10 @@
         <item>3점</item>
     </string-array>
 
+    <string-array name="create_match_type">
+        <item>3대3 반코트</item>
+        <item>5대5 반코트</item>
+        <item>5대5 풀코트</item>
+    </string-array>
+
 </resources>
