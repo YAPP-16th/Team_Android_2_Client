@@ -13,7 +13,8 @@ import kr.yapp.teamplay.domain.entity.matchschedule.MatchScheduleInnerItem
 
 class MatchScheduleInnerAdapter(
     private var list: List<MatchScheduleInnerItem>,
-    private var type: String
+    private var type: String,
+    private val viewModel: MatchScheduleViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -76,6 +77,9 @@ class MatchScheduleInnerAdapter(
         private val binding: RvInnerItemMatchScheduleHostTypeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(innerItem: MatchScheduleInnerItem) {
+            binding.viewModel = viewModel
+            binding.context = binding.root.context
+            binding.matchId = innerItem.matchRequestId.toString()
             binding.itemInnerHostTitleTv.text = innerItem.title
             binding.itemInnerMatchHostDescription.text = innerItem.description
         }

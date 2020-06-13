@@ -24,4 +24,12 @@ class MatchScheduleRepositoryImpl(
             }
     }
 
+    override fun acceptMatch(matchId: String): Single<Any> {
+        return matchScheduleService.responseMatch(matchId, "ACCEPT")
+    }
+
+    override fun declineMatch(matchId: String): Single<Any> {
+        return matchScheduleService.responseMatch(matchId, "REJECT")
+    }
+
 }

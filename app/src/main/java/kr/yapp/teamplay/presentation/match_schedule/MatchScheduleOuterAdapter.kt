@@ -12,7 +12,8 @@ import kr.yapp.teamplay.databinding.RvItemOuterMatchSchduleBinding
 import kr.yapp.teamplay.domain.entity.matchschedule.MatchScheduleOuterItem
 
 class MatchScheduleOuterAdapter(
-    private var list: MutableList<MatchScheduleOuterItem>
+    private var list: MutableList<MatchScheduleOuterItem>,
+    private val viewModel: MatchScheduleViewModel
 ) : RecyclerView.Adapter<MatchScheduleOuterAdapter.OuterViewHolder>() {
 
     inner class OuterViewHolder(
@@ -27,7 +28,8 @@ class MatchScheduleOuterAdapter(
                 setHasFixedSize(true)
                 adapter = MatchScheduleInnerAdapter(
                     outerItem.matchScheduleInfo,
-                    outerItem.matchScheduleType
+                    outerItem.matchScheduleType,
+                    viewModel
                 )
             }
         }

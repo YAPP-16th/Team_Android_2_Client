@@ -9,4 +9,11 @@ class MatchScheduleUseCase(
 ) {
     fun getOuterItem(clubId: String): Single<List<MatchScheduleOuterItem>> =
         repository.getMatchScheduleItem(clubId)
+
+    fun acceptMatch(matchId: String): Single<Any> =
+        repository.acceptMatch(matchId)
+
+    fun declineMatch(matchId: String): Single<Any> {
+        return repository.declineMatch(matchId)
+    }
 }
