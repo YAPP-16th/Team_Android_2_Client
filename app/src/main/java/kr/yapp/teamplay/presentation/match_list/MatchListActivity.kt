@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_match_list.*
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityMatchListBinding
 import kr.yapp.teamplay.domain.entity.matchlist.Search
+import kr.yapp.teamplay.presentation.creatematch.CreateMatchActivity
 import kr.yapp.teamplay.presentation.match_detail.MatchDetailActivity
 
 class MatchListActivity : AppCompatActivity() {
@@ -85,7 +86,8 @@ class MatchListActivity : AppCompatActivity() {
     }
 
     private fun startMatchRegister() {
-        Toast.makeText(this, "매칭 등록 화면으로 이동합니다.", Toast.LENGTH_LONG).show()
+        val intent = Intent(this, CreateMatchActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
