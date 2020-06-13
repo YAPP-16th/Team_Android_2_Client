@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_match_list.*
 import kr.yapp.teamplay.R
+import kr.yapp.teamplay.data.SharedPreferenceManager
 import kr.yapp.teamplay.databinding.ActivityMatchListBinding
+import kr.yapp.teamplay.domain.entity.ConstValue
 import kr.yapp.teamplay.domain.entity.matchlist.Search
 import kr.yapp.teamplay.presentation.creatematch.CreateMatchActivity
 import kr.yapp.teamplay.presentation.match_detail.MatchDetailActivity
@@ -41,6 +43,9 @@ class MatchListActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_match_list)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.matchListIcBack.setOnClickListener {
+            onBackPressed()
+        }
 
         setRecyclerView()
     }
