@@ -4,13 +4,23 @@
 package kr.yapp.teamplay.presentation.search.join
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityTeamJoinBinding
+import kr.yapp.teamplay.util.Constant
+import kr.yapp.teamplay.util.PreferenceManager
+import kr.yapp.teamplay.util.dpToPixel
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 
@@ -60,9 +70,28 @@ class TeamJoinActivity : AppCompatActivity() {
                     binding.teamCreateLocation.text = state.location
                     binding.teamCreateMemberCount.text = "${state.memberCount}명"
                     binding.teamCreateIntroduce.text = state.message
+                    binding.teamJoinQuestions.apply {
+                        layoutManager = LinearLayoutManager(this@TeamJoinActivity)
+                        itemAnimator = DefaultItemAnimator()
+                        adapter = TeamJoinQuestionAdapter(Constant.defaultQuestions)
+                        addItemDecoration(object: RecyclerView.ItemDecoration() {
+                            override fun getItemOffsets(
+                                outRect: Rect,
+                                view: View,
+                                parent: RecyclerView,
+                                state: RecyclerView.State
+                            ) {
+                                if(getChildAdapterPosition(view) != 0) {
+                                    outRect.top = 16.dpToPixel()
+                                }
+                            }
+                        })
+                    }
                 }
-                is TeamJoinUiState.Error -> {
-                    toast(state.throwable.message.toString())
+                is TeamJoinUiState.Error -> toast(state.message)
+                TeamJoinUiState.JoinSuccess -> {
+                    toast(state.message)
+                    finish()
                 }
             }
         })
@@ -70,6 +99,9 @@ class TeamJoinActivity : AppCompatActivity() {
 
     private fun setListener() {
         binding.backButton.setOnClickListener { onBackPressed() }
-        binding.requestTeamJoin.setOnClickListener { /* 가입신청 API 연동 */ }
+        binding.requestTeamJoin.setOnClickListener {
+            val accessToken: String = PreferenceManager.getTokenKey(applicationContext)
+            viewModel.requestClubJoin(accessToken, clubId)
+        }
     }
 }

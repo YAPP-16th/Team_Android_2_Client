@@ -6,12 +6,10 @@ import android.content.SharedPreferences;
 import org.jetbrains.annotations.Nullable;
 
 public class PreferenceManager {
-    public static final String PREFERENCES_NAME = "rebuild_preference";
 
+    private static final String PREFERENCES_NAME = "rebuild_preference";
     private static final String tokenKey = "tokenKey";
-
     private static final String refreshTokenKey = "refreshToken";
-
     private static final String userIdKey = "userId";
     private static final String selectedTeamIdKey = "selectedTeamId";
 
@@ -54,7 +52,6 @@ public class PreferenceManager {
     }
 
     public static String getUserId(Context context) {
-
         SharedPreferences prefs = getPreferences(context);
         String value = prefs.getString(userIdKey, "잉?");
         return value;
