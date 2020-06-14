@@ -50,7 +50,6 @@ class TeamMainActivity : AppCompatActivity() {
         clubId = intent.getIntExtra("id", -1)
         isAdmin = intent.getBooleanExtra("isAdmin", false)
         viewModel.isAdmin.value = isAdmin
-        Log.i("TTT", "isADmin : " + isAdmin)
         getTeamMainItem(clubId)
     }
 

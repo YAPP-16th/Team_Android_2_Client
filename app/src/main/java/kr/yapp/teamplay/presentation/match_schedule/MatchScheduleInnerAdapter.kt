@@ -1,8 +1,10 @@
 package kr.yapp.teamplay.presentation.match_schedule
 
 import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
@@ -10,6 +12,11 @@ import kr.yapp.teamplay.databinding.RvInnerItemMatchScheduleGeneralTypeBinding
 import kr.yapp.teamplay.databinding.RvInnerItemMatchScheduleGuestTypeBinding
 import kr.yapp.teamplay.databinding.RvInnerItemMatchScheduleHostTypeBinding
 import kr.yapp.teamplay.domain.entity.matchschedule.MatchScheduleInnerItem
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class MatchScheduleInnerAdapter(
     private var list: List<MatchScheduleInnerItem>,
@@ -65,11 +72,25 @@ class MatchScheduleInnerAdapter(
     inner class GeneralTypeViewHolder(
         private val binding: RvInnerItemMatchScheduleGeneralTypeBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bindTo(innerItem: MatchScheduleInnerItem) {
             binding.itemInnerMatchTitleTv.text = innerItem.title
             binding.itemInnerMatchDescription.text = innerItem.description
             binding.itemInnerMatchDateTv.text = innerItem.matchDate
             binding.itemInnerMatchTimeTv.text = innerItem.matchTime
+
+            val formatterOfDate = DateTimeFormatter.ofPattern("yyyy MM월 dd일")
+            val formatterOfDateTime = DateTimeFormatter.ofPattern("HH:mm")
+
+            val itemDateTime = LocalDateTime.of(
+                LocalDate.parse(LocalDate.now().year.toString() + " " + innerItem.matchDate, formatterOfDate),
+                LocalTime.parse(innerItem.matchTime!!.split("-")[1].trim(), formatterOfDateTime)
+            )
+            if (itemDateTime.isBefore(LocalDateTime.now())) {
+                binding.root.setOnClickListener {
+                    viewModel.startMatchResultInput()
+                }
+            }
         }
     }
 
@@ -93,11 +114,11 @@ class MatchScheduleInnerAdapter(
             binding.itemInnerMatchGuestDescription.text = innerItem.description
             when (innerItem.requestStatus) {
                 "WAITING" -> binding.itemInnerMatchGuestStatus.text = "수락 대기 중"
-                "REJECT" -> {
+                "ACCEPT" -> {
                     binding.itemInnerMatchGuestStatus.text = "수락됨"
                     binding.run { itemInnerMatchGuestStatus.setTextColor(Color.parseColor("#15ce79")) }
                 }
-                "ACCEPT" -> {
+                "REJECT" -> {
                     binding.itemInnerMatchGuestStatus.text = "거절됨"
                     binding.run { itemInnerMatchGuestStatus.setTextColor(Color.parseColor("#ff4d41")) }
                 }
