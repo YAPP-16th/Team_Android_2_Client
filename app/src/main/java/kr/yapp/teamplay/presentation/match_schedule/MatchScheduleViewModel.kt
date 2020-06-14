@@ -2,6 +2,7 @@ package kr.yapp.teamplay.presentation.match_schedule
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,7 @@ import io.reactivex.schedulers.Schedulers
 import kr.yapp.teamplay.data.matchschedule.MatchScheduleRepositoryImpl
 import kr.yapp.teamplay.domain.entity.matchschedule.MatchScheduleOuterItem
 import kr.yapp.teamplay.domain.usecase.MatchScheduleUseCase
+import kr.yapp.teamplay.presentation.util.SingleLiveEvent
 
 class MatchScheduleViewModel(
     private val matchScheduleUseCase: MatchScheduleUseCase =
@@ -25,6 +27,9 @@ class MatchScheduleViewModel(
 
     private val _matchScheduleItem = MutableLiveData<List<MatchScheduleOuterItem>>()
     val matchScheduleItem: LiveData<List<MatchScheduleOuterItem>> get() = _matchScheduleItem
+
+    private val _startMatchResultInput = SingleLiveEvent<Void>()
+    val startMatchResultInput : LiveData<Void> get() = _startMatchResultInput
 
     private val compositeDisposable: CompositeDisposable =
         CompositeDisposable()
@@ -57,6 +62,7 @@ class MatchScheduleViewModel(
             }, {
                 Log.e("TTT", "error! : " + it.message)
                 (context as MatchScheduleActivity).finish()
+                Toast.makeText(context, "매치를 수락했습니다.", Toast.LENGTH_LONG).show()
             })
             .addTo(compositeDisposable)
     }
@@ -71,8 +77,13 @@ class MatchScheduleViewModel(
             }, {
                 Log.e("TTT", "error! : " + it.message)
                 (context as MatchScheduleActivity).finish()
+                Toast.makeText(context, "매치를 거절했습니다.", Toast.LENGTH_LONG).show()
             })
             .addTo(compositeDisposable)
+    }
+
+    fun startMatchResultInput() {
+        _startMatchResultInput.call()
     }
 
 }

@@ -1,8 +1,10 @@
 package kr.yapp.teamplay.presentation.match_schedule
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.TeamPlayApplication
 import kr.yapp.teamplay.databinding.ActivityMatchScheduleBinding
+import kr.yapp.teamplay.presentation.matchresultinput.MatchResultInputActivity
 import kr.yapp.teamplay.util.PreferenceManager
 
 class MatchScheduleActivity : AppCompatActivity() {
@@ -49,6 +52,10 @@ class MatchScheduleActivity : AppCompatActivity() {
     }
 
     private fun setLiveDataObserver() {
+        viewModel.startMatchResultInput.observe(this, Observer {
+            val intent = Intent(this, MatchResultInputActivity::class.java)
+            startActivity(intent)
+        })
     }
 
     private fun setDataBinding() {
