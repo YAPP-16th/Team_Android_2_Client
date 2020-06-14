@@ -1,9 +1,8 @@
 package kr.yapp.teamplay.data.match
 
+import io.reactivex.Completable
 import io.reactivex.Single
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface MatchApi {
 
@@ -29,5 +28,11 @@ interface MatchApi {
     fun getDetailedMatchIndividualResult(
         @Path("matchId") matchId: Int
     ): Single<List<MatchIndividualResultResponse>>
+
+    @POST("/v1/matches/{matchId}/matchRequest")
+    fun requestMatch(
+        @Body createMatchRequest: CreateMatchRequest,
+        @Path("matchId") matchId: Int
+    ): Completable
 
 }

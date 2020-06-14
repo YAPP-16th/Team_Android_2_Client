@@ -12,13 +12,14 @@ import kr.yapp.teamplay.data.teammain.TeamRepositoryImpl
 import kr.yapp.teamplay.domain.entity.matchlist.MatchInfo
 import kr.yapp.teamplay.domain.usecase.PostMatchRequest
 import kr.yapp.teamplay.domain.usecase.TeamMainUseCase
+import kr.yapp.teamplay.presentation.BaseViewModel
 import kr.yapp.teamplay.presentation.util.SingleLiveEvent
 import kr.yapp.teamplay.util.PreferenceManager
 
 class MatchDetailViewModel(
     private val matchRequestUseCase : PostMatchRequest =
         PostMatchRequest(MatchRepositoryImpl())
-) : ViewModel() {
+) : BaseViewModel() {
     val matchInfo : MutableLiveData<MatchInfo> = MutableLiveData()
     val matchRequestSuccess : SingleLiveEvent<Void> = SingleLiveEvent()
     val matchRequestFail : SingleLiveEvent<Void> = SingleLiveEvent()
@@ -29,11 +30,10 @@ class MatchDetailViewModel(
             PreferenceManager.getUserId(TeamPlayApplication.appContext).toLong(), contact
         )
 
-        matchRequestUseCase.requestMatch(createMatchRequest, matchInfo.value!!.id)
+        matchRequestUseCase.requestMatch(createMatchRequest, matchInfo.value!!.id.toInt())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d("Request: " , it.hashCode().toString())
                 matchRequestSuccess.call()
             }, {
                 Log.d("Request: " , it.message)
@@ -50,5 +50,6 @@ class MatchDetailViewModel(
                     matchRequestFail.call()
                 }
             })
+            .addDisposable()
     }
 }

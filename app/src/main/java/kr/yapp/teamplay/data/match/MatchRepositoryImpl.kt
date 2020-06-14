@@ -1,5 +1,6 @@
 package kr.yapp.teamplay.data.match
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import kr.yapp.teamplay.data.RetrofitManager
 import kr.yapp.teamplay.domain.entity.matchresult.DetailedMatchResult
@@ -29,5 +30,9 @@ class MatchRepositoryImpl(
             .map { list ->
                 list.map { it.toEntity() }
             }
+
+    override fun requestMatch(createMatchRequest: CreateMatchRequest, matchId: Int): Completable {
+        return matchApi.requestMatch(createMatchRequest, matchId)
+    }
 
 }
