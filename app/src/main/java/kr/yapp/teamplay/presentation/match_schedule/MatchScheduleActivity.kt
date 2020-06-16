@@ -52,8 +52,9 @@ class MatchScheduleActivity : AppCompatActivity() {
     }
 
     private fun setLiveDataObserver() {
-        viewModel.startMatchResultInput.observe(this, Observer {
+        viewModel.startMatchResultInput.observe(this, Observer { matchId ->
             val intent = Intent(this, MatchResultInputActivity::class.java)
+            intent.putExtra("matchId", matchId);
             startActivity(intent)
         })
     }

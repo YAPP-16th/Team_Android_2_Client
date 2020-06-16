@@ -31,6 +31,7 @@ interface MatchApi {
 
     @POST("/v1/matches/{matchId}/matchRequest")
     fun requestMatch(
+        @Header("accessToken") accessToken: String,
         @Body createMatchRequest: CreateMatchRequest,
         @Path("matchId") matchId: Int
     ): Completable

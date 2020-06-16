@@ -9,6 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import kr.yapp.teamplay.TeamPlayApplication
 import kr.yapp.teamplay.data.matchresultinput.MatchResultInputRepositoryImpl
 import kr.yapp.teamplay.data.matchresultinput.request.PersonalRecordItemRequest
 import kr.yapp.teamplay.data.matchresultinput.request.ScoreDetailItemRequest
@@ -17,6 +18,7 @@ import kr.yapp.teamplay.domain.entity.matchresultinput.PersonalRecordItem
 import kr.yapp.teamplay.domain.entity.matchresultinput.ScoreDetailItem
 import kr.yapp.teamplay.domain.usecase.MatchResultInputUseCase
 import kr.yapp.teamplay.presentation.util.SingleLiveEvent
+import kr.yapp.teamplay.util.PreferenceManager
 
 
 class MatchResultInputViewModel(
@@ -33,6 +35,9 @@ class MatchResultInputViewModel(
 
     private val _onAddRecordTvClick = SingleLiveEvent<Any>()
     val onAddRecordTvClick: LiveData<Any> get() = _onAddRecordTvClick
+
+    private val _onFinishRegister = SingleLiveEvent<Any>()
+    val onFinishRegister: LiveData<Any> get() = _onFinishRegister
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
@@ -74,10 +79,10 @@ class MatchResultInputViewModel(
         _onClickRegisterResult.call()
     }
 
-    fun registerResult() {
+    fun registerResult(matchId: Int) {
+        Log.i("TTT", "matchId : " + matchId)
         val matchResultInfo = MatchResultInfo(
-            1,
-            1,
+            PreferenceManager.getSelectedTeamId(TeamPlayApplication.appContext),
             this.matchReview.value,
             this.hostScore.value?.toInt(),
             this.guestScore.value?.toInt(),
@@ -97,13 +102,15 @@ class MatchResultInputViewModel(
             }
         )
         Log.i("TTT", "matchReInfo : " + matchResultInfo)
-        matchResultInputUseCase.inputMatchResult(1, matchResultInfo)
+        matchResultInputUseCase.inputMatchResult(matchId, matchResultInfo)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Log.i("TTT", "ok")
+                _onFinishRegister.call()
             }, {
                 Log.e("TTT", "error! : " + it.message)
+                _onFinishRegister.call()
             })
             .addTo(compositeDisposable)
     }

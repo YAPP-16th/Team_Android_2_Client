@@ -6,5 +6,6 @@ data class MatchScheduleInnerItem(
     val matchDate: String?,
     val matchTime: String?,
     val requestStatus: String?,
-    val matchRequestId: Int?
+    val matchRequestId: Int?,
+    val matchId: Int
 )

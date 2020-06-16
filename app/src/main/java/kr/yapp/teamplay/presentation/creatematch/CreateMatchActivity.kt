@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityCreateMatchBinding
 import kr.yapp.teamplay.domain.entity.matchlist.Search
+import kr.yapp.teamplay.presentation.match_list.MatchListActivity
+import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,6 +44,7 @@ class CreateMatchActivity : AppCompatActivity() {
         viewModel.click.observe(this, androidx.lifecycle.Observer {
             finish()
         })
+        viewModel.isCreated.observe(this, androidx.lifecycle.Observer { toast("생성이 완료되었습니다.") })
     }
 
     private fun setViewListener() {

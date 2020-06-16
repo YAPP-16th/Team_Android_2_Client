@@ -4,7 +4,6 @@ import kr.yapp.teamplay.data.matchresultinput.request.PersonalRecordItemRequest
 import kr.yapp.teamplay.data.matchresultinput.request.ScoreDetailItemRequest
 
 data class MatchResultInfo(
-    val requesterUserId: Int,
     val requesterClubId: Int,
     val matchReview: String? = "",
     val hostScore: Int? = 0,

@@ -2,10 +2,12 @@ package kr.yapp.teamplay.data.match
 
 import io.reactivex.Completable
 import io.reactivex.Single
+import kr.yapp.teamplay.TeamPlayApplication
 import kr.yapp.teamplay.data.RetrofitManager
 import kr.yapp.teamplay.domain.entity.matchresult.DetailedMatchResult
 import kr.yapp.teamplay.domain.entity.matchresult.MatchIndividualScore
 import kr.yapp.teamplay.domain.repository.MatchRepository
+import kr.yapp.teamplay.util.PreferenceManager
 
 class MatchRepositoryImpl(
     private val matchApi: MatchApi =
@@ -32,7 +34,7 @@ class MatchRepositoryImpl(
             }
 
     override fun requestMatch(createMatchRequest: CreateMatchRequest, matchId: Int): Completable {
-        return matchApi.requestMatch(createMatchRequest, matchId)
+        return matchApi.requestMatch(PreferenceManager.getTokenKey(TeamPlayApplication.appContext), createMatchRequest, matchId)
     }
 
 }

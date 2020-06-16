@@ -34,6 +34,9 @@ class CreateMatchViewModel(
     private val _click = SingleLiveEvent<Any>()
     val click : LiveData<Any> get() = _click
 
+    private val _isCreated = SingleLiveEvent<Any>()
+    val isCreated : LiveData<Any> get() = _isCreated
+
     override fun onCleared() {
         compositeDisposable.dispose()
         super.onCleared()
@@ -79,8 +82,7 @@ class CreateMatchViewModel(
 
         val requestMatchInfo = RequestCreateMatch()
         requestMatchInfo.requesterClubId = PreferenceManager.getSelectedTeamId(TeamPlayApplication.appContext)
-        requestMatchInfo.requesterUserId = PreferenceManager.getUserId(TeamPlayApplication.appContext).toInt()
-        requestMatchInfo.createMatchDto =
+        requestMatchInfo.createMatchDTO =
             RequestCreateMatchDto(
                 requestCreateMatchViewDto.title.value,
                 startDate.toString(),
@@ -95,8 +97,11 @@ class CreateMatchViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Log.i("TTT", "ok")
+                _isCreated.call()
+
             }, {
                 Log.e("TTT", "error! : " + it.message)
+                _isCreated.call()
             })
             .addTo(compositeDisposable)
     }

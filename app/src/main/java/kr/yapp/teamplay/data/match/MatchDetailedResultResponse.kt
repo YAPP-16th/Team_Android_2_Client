@@ -43,5 +43,5 @@ fun MatchDetailedResultResponse.toEntity(): DetailedMatchResult =
     DetailedMatchResult(
         guestName = guestName,
         hostName = hostName,
-        matchDetailResultScores = matchDetailResultScore.map { it.toEntity() }
+        matchDetailResultScore = matchDetailResultScore.map { it.toEntity() }
     )

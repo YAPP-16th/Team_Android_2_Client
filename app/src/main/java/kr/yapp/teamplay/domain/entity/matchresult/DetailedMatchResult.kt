@@ -6,5 +6,5 @@ package kr.yapp.teamplay.domain.entity.matchresult
 data class DetailedMatchResult(
     val guestName: String,
     val hostName: String,
-    val matchDetailResultScores: List<MatchResultScorePerType>
+    val matchDetailResultScore: List<MatchResultScorePerType>
 )

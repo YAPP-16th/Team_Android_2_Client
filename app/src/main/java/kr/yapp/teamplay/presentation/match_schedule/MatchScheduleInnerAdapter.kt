@@ -16,7 +16,6 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class MatchScheduleInnerAdapter(
     private var list: List<MatchScheduleInnerItem>,
@@ -87,8 +86,9 @@ class MatchScheduleInnerAdapter(
                 LocalTime.parse(innerItem.matchTime!!.split("-")[1].trim(), formatterOfDateTime)
             )
             if (itemDateTime.isBefore(LocalDateTime.now())) {
+                binding.root.background = binding.root.context.getDrawable(R.drawable.item_search_active_label_no_arrow)
                 binding.root.setOnClickListener {
-                    viewModel.startMatchResultInput()
+                    viewModel.startMatchResultInput(innerItem.matchId)
                 }
             }
         }

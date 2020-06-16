@@ -3,6 +3,7 @@
  */
 package kr.yapp.teamplay.presentation.match_result
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Single
@@ -24,6 +25,7 @@ class MatchDetailedResultViewModel(
     val uiState: LiveData<MatchDetailedResultUiState> get() = _uiState
 
     fun getMatchDetailedResult(matchId: Int) {
+        Log.i("TTT", "matchId : $matchId")
         Single.zip(
             matchRepository.getDetailedMatchResult(matchId),
             matchRepository.getDetailedMatchIndividualResult(matchId),
@@ -32,7 +34,7 @@ class MatchDetailedResultViewModel(
                     message = "경기 결과를 정상적으로 가져왔습니다",
                     guestName = result.guestName,
                     hostName = result.hostName,
-                    resultScores = result.matchDetailResultScores,
+                    resultScores = result.matchDetailResultScore,
                     individualScore = individual
                 )
             })

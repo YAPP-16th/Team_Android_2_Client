@@ -12,12 +12,14 @@ class PopupMatchResultActivity : AppCompatActivity() {
 
     private var teamName: String? = ""
     private var isWin: Boolean = false
+    private var matchId : Int = -1
     private lateinit var binding: ActivityPopupMatchResultBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isWin = intent.getBooleanExtra("isWin", false)
         teamName = intent.getStringExtra("teamName")
+        matchId = intent.getIntExtra("matchId", -1)
         setDataBinding()
         setListener()
         setUI()
@@ -43,7 +45,8 @@ class PopupMatchResultActivity : AppCompatActivity() {
     private fun setListener() {
         binding.popupMatchResultGoButton.setOnClickListener {
             // TODO matchId 를 어디서 가져오지?
-            MatchDetailedResultActivity.start(this, matchId = 1)
+            MatchDetailedResultActivity.
+                start(this, matchId = matchId)
         }
     }
 }

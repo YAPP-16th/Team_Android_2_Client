@@ -28,8 +28,8 @@ class MatchScheduleViewModel(
     private val _matchScheduleItem = MutableLiveData<List<MatchScheduleOuterItem>>()
     val matchScheduleItem: LiveData<List<MatchScheduleOuterItem>> get() = _matchScheduleItem
 
-    private val _startMatchResultInput = SingleLiveEvent<Void>()
-    val startMatchResultInput : LiveData<Void> get() = _startMatchResultInput
+    private val _startMatchResultInput = MutableLiveData<Int>()
+    val startMatchResultInput : LiveData<Int> get() = _startMatchResultInput
 
     private val compositeDisposable: CompositeDisposable =
         CompositeDisposable()
@@ -82,8 +82,8 @@ class MatchScheduleViewModel(
             .addTo(compositeDisposable)
     }
 
-    fun startMatchResultInput() {
-        _startMatchResultInput.call()
+    fun startMatchResultInput(matchId: Int) {
+        _startMatchResultInput.value = matchId
     }
 
 }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ActivityMatchResultInputBinding
+import org.jetbrains.anko.toast
 
 class MatchResultInputActivity : AppCompatActivity() {
 
@@ -21,8 +22,9 @@ class MatchResultInputActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val matchId = intent.getIntExtra("matchId", -1)
         setDataBinding()
-        setLiveDataObserver()
+        setLiveDataObserver(matchId)
         setRecyclerView()
         initItem()
     }
@@ -34,7 +36,7 @@ class MatchResultInputActivity : AppCompatActivity() {
     }
 
 
-    private fun setLiveDataObserver() {
+    private fun setLiveDataObserver(matchId: Int) {
         viewModel.onAddScoreTvClick.observe(this, Observer {
             viewModel.addScoreDetail()
         })
@@ -44,7 +46,11 @@ class MatchResultInputActivity : AppCompatActivity() {
         })
 
         viewModel.onClickRegisterResult.observe(this, Observer {
-            viewModel.registerResult()
+            viewModel.registerResult(matchId)
+        })
+        viewModel.onFinishRegister.observe(this, Observer {
+            finish()
+            toast("결과가 등록되었습니다")
         })
     }
 
