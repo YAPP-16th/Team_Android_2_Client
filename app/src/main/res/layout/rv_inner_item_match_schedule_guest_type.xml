@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+
+        <TextView
+            android:id="@+id/item_inner_match_guest_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/sf_pro_bold"
+            android:textColor="#262626"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="남양주 팀 열정 vs 상암동 농구클럽" />
+
+        <TextView
+            android:id="@+id/item_inner_match_guest_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/sf_pro_regular"
+            android:textColor="#262626"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_inner_match_guest_title_tv"
+            tools:text="3대3 반코트  |  서울시 영등포구 여의도동" />
+
+        <TextView
+            android:id="@+id/item_inner_match_guest_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:textColor="#828282"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="수락 대기 중" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.yapp.teamplay.presentation.match_schedule.MatchScheduleViewModel" />
+    </data>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
+
+            <ImageView
+                android:id="@+id/match_schedule_ic_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_left_white"
+                android:tint="@color/colorBoldBlack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/match_schedule_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="매칭 스케줄"
+                android:fontFamily="@font/sf_pro_bold"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/match_schedule_ic_back"
+                app:layout_constraintStart_toEndOf="@+id/match_schedule_ic_back"
+                app:layout_constraintTop_toTopOf="@+id/match_schedule_ic_back" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/match_schedule_recyclerivew"
+                bindSchedule:outerItem="@{viewModel.matchScheduleItem}"
+                android:layout_width="0dp"
+                android:layout_marginTop="24dp"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/match_schedule_title"
+                tools:listitem="@layout/rv_item_outer_match_schdule" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.yapp.teamplay.presentation.onboarding.OnboardingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="36sp">
+
+        <ImageView
+            android:id="@+id/image_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logotype"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.36" />
+
+        <TextView
+            android:id="@+id/btn_kakao"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:backgroundTint="@color/colorKakao"
+            android:background="@drawable/onboarding_round_button"
+            android:text="@string/start_for_kakao"
+            android:textAlignment="center"
+            android:textColor="@color/colorKakaoText"
+            android:onClick="@{() -> viewModel.clickKakaoLoginButton()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_logo"
+            app:layout_constraintVertical_bias="0.36" />
+
+        <ImageView
+            android:id="@+id/image_kakao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:src="@drawable/ic_kakao"
+            app:layout_constraintBottom_toBottomOf="@id/btn_kakao"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_kakao" />
+
+        <TextView
+            android:id="@+id/btn_naver"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/colorNaver"
+            android:background="@drawable/onboarding_round_button"
+            android:text="@string/start_for_naver"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:onClick="@{() -> viewModel.clickNaverLoginButton()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_kakao" />
+
+        <ImageView
+            android:id="@+id/image_naver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:src="@drawable/ic_naver"
+            app:layout_constraintBottom_toBottomOf="@id/btn_naver"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_naver" />
+
+        <TextView
+            android:id="@+id/btn_google"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/colorGoogle"
+            android:background="@drawable/onboarding_round_button"
+            android:text="@string/start_for_google"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:onClick="@{() -> viewModel.clickGoogleLoginButton()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_naver" />
+
+        <ImageView
+            android:id="@+id/image_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:src="@drawable/ic_google_plus"
+            app:layout_constraintBottom_toBottomOf="@id/btn_google"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_google" />
+
+            <TextView
+                android:id="@+id/btn_onboarding_email"
+                android:layout_width="150sp"
+                android:layout_height="18sp"
+                android:text="@string/start_for_email_onboarding"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="12dp"
+                android:onClick="@{() -> viewModel.clickEmailLoginButton()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_google" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

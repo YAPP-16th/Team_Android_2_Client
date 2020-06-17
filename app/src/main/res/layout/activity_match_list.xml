@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="kr.yapp.teamplay.presentation.match_list.MatchListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:id="@+id/match_list_ic_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_arrow_left_white"
+                android:tint="@color/colorBoldBlack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/match_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/sf_pro_bold"
+                android:text="@string/match_list_header"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/match_list_ic_back"
+                app:layout_constraintStart_toEndOf="@+id/match_list_ic_back"
+                app:layout_constraintTop_toTopOf="@+id/match_list_ic_back" />
+
+            <TextView
+                android:id="@+id/match_list_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_bold"
+                android:onClick="@{() -> viewModel.clickRegisterButton()}"
+                android:text="@string/match_list_submit"
+                android:textColor="@color/colorRed"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/match_list_ic_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/match_list_ic_back" />
+
+            <TextView
+                android:id="@+id/match_list_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="@{viewModel.matchFilter}"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/match_list_ic_back" />
+
+            <ImageView
+                android:id="@+id/match_list_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/ic_search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/match_list_register" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/match_list_search">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/match_list_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/match_list_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

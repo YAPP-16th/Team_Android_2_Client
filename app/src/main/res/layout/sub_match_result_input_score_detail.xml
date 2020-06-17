@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="item"
+            type="kr.yapp.teamplay.domain.entity.matchresultinput.ScoreDetailItem" />
+    </data>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:orientation="horizontal"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <Spinner
+            android:id="@+id/sub_score_detail_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:background="@drawable/item_search_active_label"
+            android:textColor="#262626"
+            android:fontFamily="@font/sf_pro_regular"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            app:selectedValue="@={item.matchResultType}"
+            android:layout_marginEnd="5dp"
+            android:entries="@array/match_result_input_score_detail"/>
+
+        <EditText
+            android:id="@+id/sub_score_detail_host_point"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_weight="5"
+            android:background="@drawable/item_search_deactive_label"
+            android:hint="호스트 팀"
+            android:fontFamily="@font/sf_pro_bold"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textSize="14dp"
+            android:minHeight="0dp"
+            android:layout_gravity="center_vertical"
+            android:inputType="number"
+            android:text="@={item.hostScore}"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"/>
+        <EditText
+            android:id="@+id/sub_score_detail_guest_point"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_weight="5"
+            android:background="@drawable/item_search_deactive_label"
+            android:hint="게스트 팀"
+            android:fontFamily="@font/sf_pro_bold"
+            android:paddingStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:paddingEnd="10dp"
+            android:inputType="number"
+            android:textSize="14dp"
+            android:text="@={item.guestScore}"
+            android:minHeight="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"/>
+
+    </LinearLayout>
+</layout>

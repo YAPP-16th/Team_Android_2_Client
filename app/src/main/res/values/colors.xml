@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorPrimary">#d7d7d7</color>
+    <color name="colorPrimaryDark">#828282</color>
+    <color name="colorAccent">#d7d7d7</color>
+
+    <color name="colorGradientStart">#ff883e</color>
+    <color name="colorGradientEnd">#fc5851</color>
+
+    <color name="colorWireFrameFont">#7d7d7d</color>
+    <color name="colorWireFrameBackground">#d7d7d7</color>
+    <color name="colorWireFrameBackgroundOpacity40">#80d7d7d7</color>
+    <color name="colorWarmGrey">#828282</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorVeryLightPink">#f1f1f1</color>
+    <color name="colorBoldBlack">#262626</color>
+    <color name="colorBackgroundGray">#f9f9f9</color>
+    <color name="colorBasketBallRed">#de4139</color>
+    <color name="colorBasketBallRed2">#ff4d41</color>
+
+    <color name="colorTeamCharacter1">#ff863e</color>
+    <color name="colorTeamCharacter2">#fe7346</color>
+    <color name="colorTeamCharacter3">#fd694a</color>
+    <color name="colorTeamCharacter4">#fd664a</color>
+    <color name="colorTeamCharacter5">#fc5950</color>
+    <color name="colorTeamCharacter6">#15ce79</color>
+    <color name="colorTeamCharacter7">#1ac792</color>
+    <color name="colorTeamCharacter8">#1fb7ab</color>
+    <color name="colorTeamCharacter9">#1fb0c3</color>
+
+    <color name="brownGrey">#828282</color>
+
+    <color name="colorTransparentGrey">#4D828282</color>
+    <color name="colorKakao">#f6e14b</color>
+    <color name="colorKakaoLogo">#381f1f</color>
+    <color name="colorKakaoText">#262626</color>
+    <color name="colorNaver">#3dc426</color>
+    <color name="colorGoogle">#da4835</color>
+    <color name="colorRed">#ff4d41</color>
+
+    <color name="very_light_pink">#f1f1f1</color>
+    <color name="shimmer_color">#dddddd</color>
 </resources>
