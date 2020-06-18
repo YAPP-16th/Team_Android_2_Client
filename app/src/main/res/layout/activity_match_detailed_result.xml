@@ -262,7 +262,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/match_detail_individual_result_title"
-                    app:spanCount="2" />
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_match_result_individual"
+                    tools:itemCount="4"/>
 
                 <TextView
                     android:id="@+id/match_review_title"
