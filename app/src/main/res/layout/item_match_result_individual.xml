@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="@{scoreType.score}"
+                android:text="@{String.valueOf(scoreType.score)}"
                 android:textColor="@color/colorBoldBlack"
                 android:textSize="56dp"
                 android:fontFamily="@font/sf_pro_bold"

@@ -5,7 +5,9 @@ package kr.yapp.teamplay.presentation.match_result.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import kr.yapp.teamplay.R
 import kr.yapp.teamplay.databinding.ItemMatchResultScoreBinding
 import kr.yapp.teamplay.databinding.ItemMatchResultScoreHeaderBinding
 import kr.yapp.teamplay.domain.entity.matchresult.MatchResultScorePerType
@@ -24,11 +26,11 @@ class MatchResultAdapter(
         return when(viewType) {
             ViewType.HEADER.ordinal -> {
                 MatchResultHeaderViewHolder(
-                    ItemMatchResultScoreHeaderBinding.inflate(LayoutInflater.from(parent.context), null, false))
+                    ItemMatchResultScoreHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
             ViewType.RESULT.ordinal -> {
                 MatchResultViewHolder(
-                    ItemMatchResultScoreBinding.inflate(LayoutInflater.from(parent.context), null, false))
+                    ItemMatchResultScoreBinding.inflate(LayoutInflater.from(parent.context), parent, false))
             }
             else -> throw IllegalStateException("unsupported view holder type")
         }
@@ -37,7 +39,7 @@ class MatchResultAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is MatchResultHeaderViewHolder -> holder.bindTo(hostName = hostName, guestName = guestName)
-            is MatchResultViewHolder -> holder.bindTo(score = results[position])
+            is MatchResultViewHolder -> holder.bindTo(score = results[position - 1])
         }
     }
 
@@ -66,6 +68,9 @@ class MatchResultAdapter(
 
         fun bindTo(score: MatchResultScorePerType) {
             binding.scoreType = score
+            if(adapterPosition % 2 == 0) {
+                binding.root.background = ContextCompat.getDrawable(itemView.context, R.color.very_light_pink)
+            }
         }
     }
 }

@@ -5,13 +5,10 @@ package kr.yapp.teamplay.presentation.match_result
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.Single
+import com.orhanobut.logger.Logger
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import kr.yapp.teamplay.data.match.MatchRepositoryImpl
-import kr.yapp.teamplay.domain.entity.matchresult.DetailedMatchResult
-import kr.yapp.teamplay.domain.entity.matchresult.MatchIndividualScore
 import kr.yapp.teamplay.domain.repository.MatchRepository
 import kr.yapp.teamplay.presentation.BaseViewModel
 
@@ -23,26 +20,46 @@ class MatchDetailedResultViewModel(
     private val _uiState = MutableLiveData<MatchDetailedResultUiState>()
     val uiState: LiveData<MatchDetailedResultUiState> get() = _uiState
 
-    fun getMatchDetailedResult(matchId: Int) {
-        Single.zip(
-            matchRepository.getDetailedMatchResult(matchId),
-            matchRepository.getDetailedMatchIndividualResult(matchId),
-            BiFunction { result: DetailedMatchResult, individual: List<MatchIndividualScore> ->
-                MatchDetailedResultUiState.Content(
-                    message = "경기 결과를 정상적으로 가져왔습니다",
-                    guestName = result.guestName,
-                    hostName = result.hostName,
-                    resultScores = result.matchDetailResultScore,
-                    individualScore = individual
-                )
-            })
+    fun getMatchResult(matchId: Int) {
+        matchRepository.getDetailedMatchResult(matchId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ content ->
-                _uiState.value = content
+            .map { result ->
+                MatchDetailedResultUiState.Result(
+                    message = "경기 결과를 정상적으로 가져왔습니다",
+                    hostName = result.hostName,
+                    guestName = result.guestName,
+                    resultScores = result.matchDetailResultScore
+                )
+            }
+            .subscribe({ result ->
+                _uiState.value = result
             }, { throwable ->
+                Logger.d("경기 결과를 가져오지 못하였습니다")
                 _uiState.value = MatchDetailedResultUiState.Error(
                     message = "경기 결과를 가져오지 못하였습니다",
+                    throwable = throwable
+                )
+            })
+            .addDisposable()
+    }
+
+    fun getIndividualResult(matchId: Int) {
+        matchRepository.getDetailedMatchIndividualResult(matchId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map { list ->
+                MatchDetailedResultUiState.Individual(
+                    message = "개인기록을 정상적으로 가져왔습니다",
+                    individualScore = list
+                )
+            }
+            .subscribe({ individual ->
+                _uiState.value = individual
+            }, { throwable ->
+                Logger.d("개인기록을 가져오지 못하였습니다")
+                _uiState.value = MatchDetailedResultUiState.Error(
+                    message = "개인기록을 가져오지 못하였습니다",
                     throwable = throwable
                 )
             })

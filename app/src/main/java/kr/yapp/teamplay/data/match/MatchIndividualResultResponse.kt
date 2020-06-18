@@ -8,19 +8,27 @@ import kr.yapp.teamplay.domain.entity.matchresult.MatchIndividualScore
 
 data class MatchIndividualResultResponse(
 
-    @SerializedName("matchResultType")
-    val matchResultType: String,
+    @SerializedName("matchIndividualResult")
+    val individualResult: List<IndividualResponse>
+) {
+    data class IndividualResponse(
 
-    @SerializedName("recevier")
-    val receiver: String,
+        @SerializedName("matchResultType")
+        val matchResultType: String,
 
-    @SerializedName("score")
-    val score: Int
-)
+        @SerializedName("recevier")
+        val receiver: String,
 
-fun MatchIndividualResultResponse.toEntity() =
-    MatchIndividualScore(
-        matchResultType = matchResultType,
-        receiver = receiver,
-        score = score
+        @SerializedName("score")
+        val score: Int
     )
+}
+
+fun MatchIndividualResultResponse.toEntity(): List<MatchIndividualScore> =
+    individualResult.map {
+        MatchIndividualScore(
+            matchResultType = it.matchResultType,
+            receiver = it.receiver,
+            score = it.score
+        )
+    }

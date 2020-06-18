@@ -60,9 +60,13 @@ class MatchDetailedResultActivity : AppCompatActivity() {
     private fun setLiveDataObserver() {
         viewModel.uiState.observe(this, Observer { state ->
             when(state) {
-                is MatchDetailedResultUiState.Content ->{
+                is MatchDetailedResultUiState.Result ->{
+                    binding.matchHostTeamName.text = state.hostName
+                    binding.matchGuestTeamName.text = state.guestName
                     binding.matchDetailRecyclerView.layoutManager = LinearLayoutManager(this)
                     binding.matchDetailRecyclerView.adapter = MatchResultAdapter(state.resultScores, state.hostName, state.guestName)
+                }
+                is MatchDetailedResultUiState.Individual -> {
                     binding.individualScoreRecyclerView.layoutManager = GridLayoutManager(this, 2)
                     binding.individualScoreRecyclerView.adapter = MatchIndividualAdapter(individual = state.individualScore)
                     binding.individualScoreRecyclerView.addItemDecoration(object: RecyclerView.ItemDecoration() {
@@ -72,12 +76,11 @@ class MatchDetailedResultActivity : AppCompatActivity() {
                             parent: RecyclerView,
                             state: RecyclerView.State
                         ) {
-                            val layoutParams: GridLayoutManager.LayoutParams = parent.layoutParams as GridLayoutManager.LayoutParams
+                            outRect.bottom = 10.dpToPixel()
+
+                            val layoutParams: GridLayoutManager.LayoutParams = view.layoutParams as GridLayoutManager.LayoutParams
                             if(layoutParams.spanIndex == 0) {
                                 outRect.right = 10.dpToPixel()
-                            }
-                            if(parent.getChildAdapterPosition(view) != state.itemCount - 1) {
-                                outRect.bottom = 10.dpToPixel()
                             }
                         }
                     })
@@ -89,12 +92,14 @@ class MatchDetailedResultActivity : AppCompatActivity() {
 
     private fun setListener() {
         binding.backButton.setOnClickListener { onBackPressed() }
+        binding.matchConfirmButton.setOnClickListener { onBackPressed() }
     }
 
     private fun getMatchDetailedResult() {
         matchId = intent.getIntExtra(EXTRA_MATCH_ID, DEFAULT_MATCH_ID)
         if(matchId != DEFAULT_MATCH_ID) {
-            viewModel.getMatchDetailedResult(matchId = matchId)
+            viewModel.getMatchResult(matchId = matchId)
+            viewModel.getIndividualResult(matchId = matchId)
         }
     }
 

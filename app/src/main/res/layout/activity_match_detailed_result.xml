@@ -231,6 +231,8 @@
                         android:id="@+id/match_detail_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:scrollbars="none"
+                        android:overScrollMode="never"
                         tools:listitem="@layout/item_match_result_score"
                         tools:itemCount="6"/>
 
@@ -258,6 +260,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -271,7 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="26dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="@font/sf_pro_bold"
                     android:includeFontPadding="false"
                     android:text="경기 후기"

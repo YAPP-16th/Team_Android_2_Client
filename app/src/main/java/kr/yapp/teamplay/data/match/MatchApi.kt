@@ -27,7 +27,7 @@ interface MatchApi {
     @GET("/v1/matches/{matchId}/result/individual")
     fun getDetailedMatchIndividualResult(
         @Path("matchId") matchId: Int
-    ): Single<List<MatchIndividualResultResponse>>
+    ): Single<MatchIndividualResultResponse>
 
     @POST("/v1/matches/{matchId}/matchRequest")
     fun requestMatch(
