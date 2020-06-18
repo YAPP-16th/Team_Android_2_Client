@@ -3,7 +3,6 @@
  */
 package kr.yapp.teamplay.presentation.match_result
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Single
@@ -25,7 +24,6 @@ class MatchDetailedResultViewModel(
     val uiState: LiveData<MatchDetailedResultUiState> get() = _uiState
 
     fun getMatchDetailedResult(matchId: Int) {
-        Log.i("TTT", "matchId : $matchId")
         Single.zip(
             matchRepository.getDetailedMatchResult(matchId),
             matchRepository.getDetailedMatchIndividualResult(matchId),

@@ -9,9 +9,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import kr.yapp.teamplay.R
 
 import kr.yapp.teamplay.databinding.ActivityMatchDetailedResultBinding
+import kr.yapp.teamplay.presentation.match_result.adapter.MatchResultAdapter
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 
@@ -38,7 +41,6 @@ class MatchDetailedResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBinding()
-        setRecyclerView()
         setLiveDataObserver()
         setListener()
         getMatchDetailedResult()
@@ -54,15 +56,14 @@ class MatchDetailedResultActivity : AppCompatActivity() {
         viewModel.uiState.observe(this, Observer { state ->
             when(state) {
                 is MatchDetailedResultUiState.Content ->{
-                    // TODO uiState에 따라서 화면 갱신
+                    binding.matchDetailRecyclerView.layoutManager = LinearLayoutManager(this)
+                    binding.matchDetailRecyclerView.adapter = MatchResultAdapter(state.resultScores, state.hostName, state.guestName)
+                    binding.individualScoreRecyclerView.layoutManager = GridLayoutManager(this, 2)
+                    //binding.individualScoreRecyclerView.adapter =
                 }
                 is MatchDetailedResultUiState.Error -> toast(state.message)
             }
         })
-    }
-
-    private fun setRecyclerView() {
-        // TODO 결기 상세 결과, 개인 기록 RecyclerView 초기화
     }
 
     private fun setListener() {

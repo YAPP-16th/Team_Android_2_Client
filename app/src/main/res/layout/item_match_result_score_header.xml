@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="hostName"
+            type="String" />
+        <variable
+            name="guestName"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackgroundGray">
+
+        <TextView
+            android:id="@+id/host_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="22dp"
+            android:text="@{hostName}"
+            android:textColor="@color/colorBoldBlack"
+            android:textSize="14dp"
+            android:fontFamily="@font/sf_pro_bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="상암동 농구클럽"/>
+
+        <TextView
+            android:id="@+id/guest_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:text="@{guestName}"
+            android:textColor="@color/colorBoldBlack"
+            android:textSize="14dp"
+            android:fontFamily="@font/sf_pro_bold"
+            app:layout_constraintTop_toTopOf="@id/host_name_text_view"
+            app:layout_constraintBottom_toBottomOf="@id/host_name_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="남양주 팀 열정"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
