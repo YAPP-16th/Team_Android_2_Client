@@ -4,14 +4,22 @@
 package kr.yapp.teamplay.presentation.match_result
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kr.yapp.teamplay.R
 
 import kr.yapp.teamplay.databinding.ActivityMatchDetailedResultBinding
+import kr.yapp.teamplay.presentation.match_result.adapter.MatchIndividualAdapter
+import kr.yapp.teamplay.presentation.match_result.adapter.MatchResultAdapter
+import kr.yapp.teamplay.util.dpToPixel
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 
@@ -38,7 +46,6 @@ class MatchDetailedResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBinding()
-        setRecyclerView()
         setLiveDataObserver()
         setListener()
         getMatchDetailedResult()
@@ -53,26 +60,46 @@ class MatchDetailedResultActivity : AppCompatActivity() {
     private fun setLiveDataObserver() {
         viewModel.uiState.observe(this, Observer { state ->
             when(state) {
-                is MatchDetailedResultUiState.Content ->{
-                    // TODO uiState에 따라서 화면 갱신
+                is MatchDetailedResultUiState.Result ->{
+                    binding.matchHostTeamName.text = state.hostName
+                    binding.matchGuestTeamName.text = state.guestName
+                    binding.matchDetailRecyclerView.layoutManager = LinearLayoutManager(this)
+                    binding.matchDetailRecyclerView.adapter = MatchResultAdapter(state.resultScores, state.hostName, state.guestName)
+                }
+                is MatchDetailedResultUiState.Individual -> {
+                    binding.individualScoreRecyclerView.layoutManager = GridLayoutManager(this, 2)
+                    binding.individualScoreRecyclerView.adapter = MatchIndividualAdapter(individual = state.individualScore)
+                    binding.individualScoreRecyclerView.addItemDecoration(object: RecyclerView.ItemDecoration() {
+                        override fun getItemOffsets(
+                            outRect: Rect,
+                            view: View,
+                            parent: RecyclerView,
+                            state: RecyclerView.State
+                        ) {
+                            outRect.bottom = 10.dpToPixel()
+
+                            val layoutParams: GridLayoutManager.LayoutParams = view.layoutParams as GridLayoutManager.LayoutParams
+                            if(layoutParams.spanIndex == 0) {
+                                outRect.right = 10.dpToPixel()
+                            }
+                        }
+                    })
                 }
                 is MatchDetailedResultUiState.Error -> toast(state.message)
             }
         })
     }
 
-    private fun setRecyclerView() {
-        // TODO 결기 상세 결과, 개인 기록 RecyclerView 초기화
-    }
-
     private fun setListener() {
         binding.backButton.setOnClickListener { onBackPressed() }
+        binding.matchConfirmButton.setOnClickListener { onBackPressed() }
     }
 
     private fun getMatchDetailedResult() {
         matchId = intent.getIntExtra(EXTRA_MATCH_ID, DEFAULT_MATCH_ID)
         if(matchId != DEFAULT_MATCH_ID) {
-            viewModel.getMatchDetailedResult(matchId = matchId)
+            viewModel.getMatchResult(matchId = matchId)
+            viewModel.getIndividualResult(matchId = matchId)
         }
     }
 

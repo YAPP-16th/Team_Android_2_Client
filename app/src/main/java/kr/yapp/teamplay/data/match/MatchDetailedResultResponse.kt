@@ -9,15 +9,21 @@ import kr.yapp.teamplay.domain.entity.matchresult.MatchResultScorePerType
 
 data class MatchDetailedResultResponse(
 
-    @SerializedName("guestName")
-    val guestName: String,
-
-    @SerializedName("hostName")
-    val hostName: String,
-
-    @SerializedName("matchDetailResultScore")
-    val matchDetailResultScore: List<MatchDetailResultScore>
+    @SerializedName("matchDetailResult")
+    val matchDetailResult: MatchDetailResponse
 ) {
+
+    data class MatchDetailResponse(
+
+        @SerializedName("guestName")
+        val guestName: String,
+
+        @SerializedName("hostName")
+        val hostName: String,
+
+        @SerializedName("matchDetailResultScore")
+        val matchDetailResultScore: List<MatchDetailResultScore>
+    )
 
     data class MatchDetailResultScore(
 
@@ -41,7 +47,7 @@ fun MatchDetailedResultResponse.MatchDetailResultScore.toEntity(): MatchResultSc
 
 fun MatchDetailedResultResponse.toEntity(): DetailedMatchResult =
     DetailedMatchResult(
-        guestName = guestName,
-        hostName = hostName,
-        matchDetailResultScore = matchDetailResultScore.map { it.toEntity() }
+        guestName = matchDetailResult.guestName,
+        hostName = matchDetailResult.hostName,
+        matchDetailResultScore = matchDetailResult.matchDetailResultScore.map { it.toEntity() }
     )

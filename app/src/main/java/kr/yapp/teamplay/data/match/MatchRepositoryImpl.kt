@@ -29,9 +29,7 @@ class MatchRepositoryImpl(
 
     override fun getDetailedMatchIndividualResult(matchId: Int): Single<List<MatchIndividualScore>> =
         matchApi.getDetailedMatchIndividualResult(matchId = matchId)
-            .map { list ->
-                list.map { it.toEntity() }
-            }
+            .map { response -> response.toEntity() }
 
     override fun requestMatch(createMatchRequest: CreateMatchRequest, matchId: Int): Completable {
         return matchApi.requestMatch(PreferenceManager.getTokenKey(TeamPlayApplication.appContext), createMatchRequest, matchId)

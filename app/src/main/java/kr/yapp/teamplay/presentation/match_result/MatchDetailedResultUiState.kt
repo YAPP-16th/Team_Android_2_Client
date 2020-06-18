@@ -10,11 +10,15 @@ sealed class MatchDetailedResultUiState {
 
     abstract val message: String
 
-    data class Content(
+    data class Result(
         override val message: String,
         val guestName: String,
         val hostName: String,
-        val resultScores: List<MatchResultScorePerType>,
+        val resultScores: List<MatchResultScorePerType>
+    ): MatchDetailedResultUiState()
+
+    data class Individual(
+        override val message: String,
         val individualScore: List<MatchIndividualScore>
     ): MatchDetailedResultUiState()
 
